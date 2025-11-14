@@ -1,0 +1,45 @@
+@use '@/app/styles/mixins' as *;
+
+.container {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  display: flex;
+  gap: var(--space-s);
+}
+
+.input {
+  @include visually-hidden;
+  @include transition(background-color);
+
+  &:checked + .customCheckbox {
+    border: none;
+    background-color: var(--color-accent-20);
+    @include transition(background-color);
+
+    &:hover {
+      background-color: var(--color-accent-30);
+    }
+  }
+}
+
+.customCheckbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1em;
+  height: 1em;
+  border: 2px solid var(--color-gray-60);
+  border-radius: var(--border-radius-xs);
+  @include transition(border-color);
+  
+  &:hover {
+    border: 2px solid var(--color-gray-80);
+    @include transition(border-color);
+  }
+  
+}
+
+.label {
+  user-select: none;
+}

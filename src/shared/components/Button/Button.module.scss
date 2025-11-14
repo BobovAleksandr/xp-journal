@@ -1,0 +1,63 @@
+@use '@/app/styles/mixins' as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  border: 2px solid transparent;
+  border-radius: var(--border-radius-s);
+  padding: calc(var(--space-s) - 2px) calc(var(--space-m) - 2px);
+  color: var(--color-light-25);
+  font-family: inherit;
+  font-size: var(--font-size-m);
+  @include transition;
+}
+
+.default {
+  background-color: var(--color-accent-30);
+  
+  &:hover {
+    background-color: var(--color-accent-40);
+    @include transition(background-color);
+  }
+
+  &:active {
+    background-color: var(--color-accent-30);
+    @include transition(background-color);
+  }
+}
+
+.outline {
+  box-sizing: content-box;
+  border: 2px solid var(--color-accent-10);
+  background-color: transparent;
+
+  &:hover {
+    background-color: var(--color-accent-10);
+    @include transition;
+  }
+
+  &:active {
+    border-color: var(--color-accent-30);
+    background-color: var(--color-accent-30);
+    @include transition;
+  }
+}
+
+.light {
+  background-color: var(--color-accent-10);
+
+    &:hover {
+    background-color: var(--color-accent-20);
+    @include transition(background-color);
+  }
+
+  &:active {
+     background-color: var(--color-accent-30);
+    @include transition(background-color);
+  }
+}
+
+.icon {
+  display: block;
+}

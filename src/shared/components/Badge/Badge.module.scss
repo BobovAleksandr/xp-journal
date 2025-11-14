@@ -1,0 +1,25 @@
+@use '@/app/styles/mixins' as *;
+
+.badge {
+  display: flex;
+  gap: var(--space-s);
+  border-radius: var(--border-radius-s);
+  border: 2px solid var(--color-accent-10);
+  padding: calc(var(--space-s) - 2px) calc(var(--space-m) - 2px);
+  align-items: center;
+  @include transition(background-color);
+  
+  &:hover {
+    background-color: var(--color-accent-10);
+    @include transition(background-color);
+  }
+}
+
+.active {
+  background-color: var(--color-accent-30);
+  @include transition(background-color);
+}
+
+.icon {
+  display: block;
+}

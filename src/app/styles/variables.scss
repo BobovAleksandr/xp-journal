@@ -1,0 +1,63 @@
+:root {
+
+    // Colors
+  --color-accent-40: hsl(190, 100, 40);
+  --color-accent-30: hsl(190, 100, 30);
+  --color-accent-20: hsl(190, 100, 20);
+  --color-accent-10: hsl(190, 100, 10);
+
+  --color-dark-100: hsl(190, 100, 5);
+  --color-dark-50: hsl(190, 50, 5);
+  --color-dark-25: hsl(190, 25, 5);
+  --color-dark-10: hsl(190, 10, 5);
+
+  --color-light-100: hsl(190, 100, 85); 
+  --color-light-50: hsl(190, 50, 85);
+  --color-light-25: hsl(190, 25, 85);
+  
+  --color-gray-20: #333;
+  --color-gray-40: #666;
+  --color-gray-60: #999;
+  --color-gray-80: #ccc;
+
+    // Gradients
+  --gradient-accent-40-30: linear-gradient(var(--color-accent-40), var(--color-accent-30));
+  --gradient-accent-30-20: linear-gradient(var(--color-accent-30), var(--color-accent-20));
+  --gradient-accent-20-10: linear-gradient(var(--color-accent-20), var(--color-accent-10));
+
+  --gradient-dark-25-10: linear-gradient(var(--color-dark-25), var(--color-dark-10));
+  --gradient-dark-50-25: linear-gradient(var(--color-dark-50), var(--color-dark-25));
+  --gradient-dark-100-50: linear-gradient(var(--color-dark-100), var(--color-dark-50));
+
+    // Font Sizes
+  --font-size-s: 0.875em;      // 14px
+  --font-size-m: 1em;          // 16px
+  --font-size-l: 1.25em;       // 20px
+  --font-size-xl: 1.5em;       // 24px
+  --font-size-xxl: 2em;        // 32px
+
+    // Line Heights
+  --line-height-xxl: 2.375em;  // 38px
+  --line-height-xl: 2em;       // 32px
+  --line-height-l: 1.75em;     // 28px
+  --line-height-m: 1.375em;    // 20px
+  --line-height-s: 1.125em;    // 18px
+
+    // Font Weights
+  --font-weight-regular: 400;
+  --font-weight-semibold: 500;
+
+    // Spaces
+  --space-xs: 0.25em;          // 4px
+  --space-s: 0.5em;            // 8px
+  --space-m: 1em;              // 16px
+  --space-l: 1.5em;            // 24px
+  --space-xl: 2em;             // 32px
+  --space-xxl: 3em;            // 48px
+
+    // Border Radius
+  --border-radius-m: 1em;      // 16px
+  --border-radius-s: 0.5em;    // 8px
+  --border-radius-xs: 0.25em;  // 4px
+
+}

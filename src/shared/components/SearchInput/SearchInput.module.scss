@@ -1,0 +1,43 @@
+@use '@/app/styles/mixins' as *;
+
+.input {
+  position: relative;
+  border: 2px solid var(--color-gray-60);
+  border-radius: var(--border-radius-s);
+  padding-inline: calc(var(--space-m) + 1em + var(--space-s)) calc(var(--space-s) - 2px);
+  padding-inline-start: calc(var(--space-m) + 1em + var(--space-s));
+  padding-block: calc(var(--space-s) - 2px);
+  color: var(--color-light-25);
+  font-family: inherit;
+  background-color: transparent;
+  background-image: url('/images/icons/search.svg');
+  background-repeat: no-repeat;
+  background-position: var(--space-m) center;
+  background-size: 1em;
+  @include transition(border-color);
+
+  &:focus {
+    border-color: var(--color-light-25);
+    outline: none;
+    @include transition(border-color);
+  }
+
+   &::-webkit-search-cancel-button,
+   &::-moz-search-cancel-button {
+    width: 1em;
+    height: 1em;
+    background-image: url('/images/icons/xmark.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    @include transition(opacity);
+    
+    &:hover {
+      opacity: 0.7;
+      @include transition(opacity);
+    }
+  }
+
+}

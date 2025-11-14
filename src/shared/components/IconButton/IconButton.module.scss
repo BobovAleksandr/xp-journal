@@ -1,0 +1,33 @@
+@use '@/app/styles/mixins' as *;
+
+.button {
+  border: none;
+  color: var(--color-light-25);
+  background-color: transparent;
+  @include transition(background-color);
+
+  &:hover {
+    background-color: var(--color-accent-10);
+    @include transition(background-color);
+  }
+  
+  &:active {
+    background-color: var(--color-accent-30);
+    @include transition(background-color);
+  }
+}
+
+.small {
+  border-radius: var(--border-radius-xs);
+  padding: calc(var(--space-xs) - 1px);
+}
+
+.large {
+  border-radius: var(--border-radius-s);
+  padding: calc(var(--space-s) - 1px);
+}
+
+.icon {
+  display: block;
+}
+

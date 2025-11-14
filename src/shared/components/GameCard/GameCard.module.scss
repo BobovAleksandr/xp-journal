@@ -1,0 +1,37 @@
+@use '@/app/styles/mixins.scss' as *;
+
+.card {
+  position: relative;
+  display: block;
+  max-width: 220px;
+  max-height: 300px;
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+  transform-origin: top;
+  @include transition(transform);
+  
+  &:before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.15;
+    background: linear-gradient(-10deg, transparent 45%, var(--color-gray-80) 48%);
+    transform: translateY(-30%);
+    @include transition(transform);
+  }
+  
+  &:hover:before {
+    transform: translateY(0);
+    @include transition(transform);
+  }
+  
+  &:hover {
+    transform: perspective(1000px) rotateX(5deg);
+    @include transition(transform);
+  }
+}
+
+.card__image {
+  object-fit: cover;
+  object-position: center center;
+}

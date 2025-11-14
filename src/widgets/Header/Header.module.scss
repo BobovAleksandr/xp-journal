@@ -1,0 +1,14 @@
+.header {
+  margin-inline: auto;
+  margin-block: var(--space-xl) var(--space-xxl);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-l);
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+}

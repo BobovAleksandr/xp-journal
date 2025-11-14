@@ -1,0 +1,31 @@
+:root {
+  --page-inline-padding: 20px;
+  --page-width: 1440px;
+  --global-max-width: calc(var(--page-width) + calc(var(--page-inline-padding) * 2));
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-size: inherit;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  max-width: var(--global-max-width);
+  margin: 0 auto;
+  padding: 0 var(--page-inline-padding);
+  color: var(--color-light-25);
+  background-color: var(--color-dark-10);
+}
+
+ul, li {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
