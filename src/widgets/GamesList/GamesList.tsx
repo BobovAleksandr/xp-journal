@@ -1,11 +1,11 @@
 import styles from "./GamesList.module.scss";
 import cn from "classnames";
 import GameCard from "@/entities/game/ui/GameCard/GameCard";
-import { TGameMainPage } from "@/entities/game/model/types";
+import { TGameUser } from "@/entities/game/model/types";
 
 type GamesListProps = {
   className?: string;
-  games: TGameMainPage[];
+  games: TGameUser[];
 };
 
 const GamesList = ({ className, games }: GamesListProps) => {
@@ -13,7 +13,7 @@ const GamesList = ({ className, games }: GamesListProps) => {
     <ul className={cn(styles.gamesList, className)}>
       {games.map((game) => (
         <li key={game.id}>
-          <GameCard image={game.cover} slug={game.slug} title={game.name} />
+          <GameCard cover={game.cover} slug={game.slug} title={game.name} />
         </li>
       ))}
     </ul>

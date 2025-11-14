@@ -15,17 +15,12 @@ export type TGameTwitch = {
   dlcs?: number[];
 };
 
-export type TGameMainPage = {
-  id: number;
-  slug: string;
-  cover: TCover;
-  name: string;
-}
-
 export type TGameUser = {
   id: number;
   slug: string;
   status: TUserGameStatusKey;
+  cover: string;
+  name: string;
   rating: number;
 }
 

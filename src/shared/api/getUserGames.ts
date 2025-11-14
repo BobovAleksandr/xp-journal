@@ -1,32 +1,14 @@
 'use server';
 
-import { BASE_URL, ENDPOINTS } from "@/app/constants";
-import { TGameMainPage } from "@/entities/game/model/types";
-import { TUser } from "@/entities/user/types";
+import { prisma } from '@/shared/lib/prisma';
+import { TGameUser } from '@/entities/game/model/types';
 
-export default async function getUserGames(user: TUser): Promise<TGameMainPage[]> {
-
-  const userGamesIds = user.games.map((game) => game.id);
-  const idList = userGamesIds.join(", ");
-
-  const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
-    method: "POST",
-    headers: {
-      "Client-ID": process.env.IGDB_CLIENT_ID!,
-      Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN!}`,
-      Accept: "application/json",
-    },
-    body: `fields name, slug, cover.image_id;
-           where id = (${idList});
-          limit 500;`,
+export default async function getUserGames(userId: number): Promise<TGameUser[]> {
+  const userGames = await prisma.userGame.findMany({
+    where: { userId },
   });
 
-  if (!response.ok) {
-    // TODO - Обработка ошибок
-    throw new Error(`IGDB API error: ${response.status}`);
-  }
+  if (userGames.length === 0) return [];
 
-  const mainPageGames: TGameMainPage[] = await response.json()
-
-  return mainPageGames;
+  return userGames;
 }

@@ -3,17 +3,16 @@ import styles from "./GameCard.module.scss";
 import cn from "classnames";
 import Image from "next/image";
 import Link from "next/link";
-import { TCover } from "@/entities/game/model/types";
 import { buildImageUrl } from "@/shared/utils.ts/buildImageUrl";
 
 type GameCardProps = {
   className?: string;
   slug: string;
-  image: TCover;
+  cover: string;
   title: string;
 };
 
-const GameCard = ({ image, slug, title, className }: GameCardProps) => {
+const GameCard = ({ cover, slug, title, className }: GameCardProps) => {
   return (
     <Link
       href={`${ROUTES.GAMES}${slug}/`}
@@ -22,7 +21,7 @@ const GameCard = ({ image, slug, title, className }: GameCardProps) => {
     >
       <Image
         className={styles.card__image}
-        src={buildImageUrl(image.image_id, "cover_big")}
+        src={buildImageUrl(cover, "cover_big")}
         width={220}
         height={300}
         alt={title}

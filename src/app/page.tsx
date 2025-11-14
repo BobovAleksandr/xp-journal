@@ -1,9 +1,8 @@
 import GamesList from "@/widgets/GamesList/GamesList";
-import { userHoleinthehead } from "./mock/mockUserData";
 import getUserGames from "@/shared/api/getUserGames";
 
 // TODO - Грузим юзера из авторизации
-const games = await getUserGames(userHoleinthehead)
+const games = await getUserGames(1);
 
 export default function Home() {
   return <main>
