@@ -6,8 +6,8 @@ import { TUser } from "@/entities/user/types";
 
 export default async function getUserGames(user: TUser): Promise<TGameMainPage[]> {
 
-  const userGames = user.games.map((game) => game.slug);
-  const slugList = userGames.map((slug) => `"${slug}"`).join(", ");
+  const userGamesIds = user.games.map((game) => game.id);
+  const idList = userGamesIds.join(", ");
 
   const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
     method: "POST",
@@ -17,7 +17,8 @@ export default async function getUserGames(user: TUser): Promise<TGameMainPage[]
       Accept: "application/json",
     },
     body: `fields name, slug, cover.image_id;
-           where slug = (${slugList});`,
+           where id = (${idList});
+          limit 500;`,
   });
 
   if (!response.ok) {

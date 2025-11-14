@@ -1,6 +1,6 @@
 import styles from "./GamesList.module.scss";
 import cn from "classnames";
-import GameCard from "@/shared/components/GameCard/GameCard";
+import GameCard from "@/entities/game/ui/GameCard/GameCard";
 import { TGameMainPage } from "@/entities/game/model/types";
 
 type GamesListProps = {
