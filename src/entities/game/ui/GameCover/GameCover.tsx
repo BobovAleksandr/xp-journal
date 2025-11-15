@@ -12,7 +12,7 @@ type Variant = keyof typeof COVER_CONFIG;
 
 type GameCoverProps = {
   className?: string;
-  cover: string;
+  cover?: string;
   name: string;
   variant: Variant;
 };
@@ -22,7 +22,7 @@ const GameCover = ({ name, cover, className, variant }: GameCoverProps) => {
   return (
     <Image
       className={cn(styles.image, className)}
-      src={buildImageUrl(cover, urlVariant)}
+      src={cover ? buildImageUrl(cover, urlVariant) : "/images/Image-error-placeholder.jpg"}
       width={width}
       height={height}
       alt={name}

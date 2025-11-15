@@ -6,7 +6,7 @@ import { TCompany, TFranchise } from "@/entities/game/model/types";
 
 type GameInfoProps = {
   className?: string;
-  cover: string;
+  cover?: string;
   name: string;
   releaseDate?: number;
   developer?: TCompany;

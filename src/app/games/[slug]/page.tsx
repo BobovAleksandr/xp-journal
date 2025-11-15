@@ -32,7 +32,7 @@ const GamePage = async ({ className, params }: GamePageProps) => {
     <main className={cn(styles.main, className)}>
       <GameTitle name={name} type={type} />
       <GameInfo
-        cover={cover.image_id}
+        cover={cover?.image_id}
         name={name}
         releaseDate={releaseDate}
         developer={developer}
