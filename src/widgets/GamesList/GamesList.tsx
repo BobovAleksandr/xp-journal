@@ -13,7 +13,7 @@ const GamesList = ({ className, games }: GamesListProps) => {
     <ul className={cn(styles.gamesList, className)}>
       {games.map((game) => (
         <li key={game.id}>
-          <GameCard cover={game.cover} slug={game.slug} title={game.name} />
+          <GameCard cover={game.cover} slug={game.slug} name={game.name} />
         </li>
       ))}
     </ul>

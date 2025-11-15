@@ -1,0 +1,49 @@
+'use server';
+
+import { BASE_URL, ENDPOINTS } from "@/app/constants";
+import { TGameTwitch } from "@/entities/game/model/types";
+
+export default async function getGameBySlug(slug: string): Promise<TGameTwitch> {
+  const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
+    method: 'POST',
+    headers: {
+      'Client-ID': process.env.IGDB_CLIENT_ID!,
+      Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN!}`,
+    },
+    body: `
+    fields 
+      id, 
+      slug, 
+      name, 
+      cover.image_id,
+      first_release_date,
+      franchises.name,
+      franchises.slug,
+      involved_companies.company.name,
+      involved_companies.company.slug,
+      involved_companies.company.logo.image_id,
+      involved_companies.developer,
+      involved_companies.publisher,
+      screenshots.image_id,
+      videos.video_id,
+      websites.url,
+      websites.category,
+      game_type,
+      dlcs;
+    where slug = "${slug}";
+    limit 1;
+  `,
+  });
+
+  if (!response.ok) {
+    throw new Error('Ошибка получения данных об игре:', { cause: `${response.status} ${response.statusText}` })
+  }
+
+  const data: TGameTwitch[] = await response.json();
+
+  if (!data[0]) {
+    throw new Error('Игра не найдена');
+  }
+
+  return data[0];
+}

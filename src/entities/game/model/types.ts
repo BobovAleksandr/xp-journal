@@ -1,12 +1,12 @@
-import { TUserGameStatusKey } from "./constants";
+import { TGameType, TUserGameStatusKey, TWebsiteCategory } from "./constants";
 
 export type TGameTwitch = {
   id: number;
   slug: string;
   name: string;
-  cover: TCover;
-  first_release_date: number;
-  franchises: TFranchise[];
+  cover?: TCover;
+  first_release_date?: number;
+  franchises?: TFranchise[];
   involved_companies: TInvolvedCompany[];
   screenshots: TScreenshot[];
   videos: TVideo[];
@@ -26,37 +26,22 @@ export type TGameUser = {
 
 export type TGameClient = TGameTwitch & TGameUser
 
-export type TWebsiteCategory = 
-  | 1   // Official
-  | 5   // GOG
-  | 13  // Steam
-  | 26; // Epic Games Store
-
-export type TGameType = 
-  | 0  // Main game
-  | 1  // DLC/Addon
-  | 2  // Expansion
-  | 3  // Bundle
-  | 4; // Standalone expansion
-
 export type TCover = {
   id: number;
   image_id: string;
 };
 
 export type TFranchise = {
-  id: number;
+  slug: string;
   name: string;
 };
 
 export type TCompany = {
-  id: number;
   name: string;
   slug: string;
 };
 
 export type TInvolvedCompany = {
-  id: number;
   company: TCompany;
   developer: boolean;
   publisher: boolean;

@@ -1,0 +1,17 @@
+$border-radius: 2px;
+
+.chips {
+  max-height: max-content;
+  border-radius: var(--border-radius-s);
+  
+  &--default {
+    padding: calc(var(--space-xs) + $border-radius) calc(var(--space-m) + $border-radius); // Компенсируем отсутствие рамки
+    background: var(--gradient-accent-30-20);
+  }
+  
+  &--outline {
+    border: var(--border-default);
+    padding: var(--space-xs) var(--space-m);
+    background: transparent;
+  }
+}

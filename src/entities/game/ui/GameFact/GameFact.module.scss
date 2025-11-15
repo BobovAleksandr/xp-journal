@@ -1,0 +1,9 @@
+.game_fact {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-l);
+}
+
+.game_fact__title {
+  min-width: 180px;
+}

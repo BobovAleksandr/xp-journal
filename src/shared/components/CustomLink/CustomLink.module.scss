@@ -1,0 +1,19 @@
+@use '@/app/styles/mixins.scss' as *;
+
+.link {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: var(--space-s);
+  @include transition(color);
+  
+  &:hover {
+    color: var(--color-light-100);
+    @include transition(color);
+  }
+  
+  &:active {
+    color: var(--color-accent-40);
+    @include transition(color);
+  }
+}

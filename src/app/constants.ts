@@ -1,5 +1,7 @@
 export const ROUTES = {
-  GAMES: '/games/'
+  GAMES: '/games/',
+  COMPANIES: '/companies/',
+  FRANCHISES: '/franchises/',
 } as const;
 
 export const ENDPOINTS = {

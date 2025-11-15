@@ -1,0 +1,11 @@
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.facts_group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
