@@ -1,4 +1,4 @@
-import { TGameType, TUserGameStatusKey, TWebsiteCategory } from "./constants";
+import { TGameType, TUserGameStatusKey, TWebsiteType } from "./constants";
 
 export type TGameTwitch = {
   id: number;
@@ -60,7 +60,7 @@ export type TVideo = {
 export type TWebsite = {
   id: number;
   url: string;
-  category?: TWebsiteCategory;
+  type?: TWebsiteType;
 };
 
 

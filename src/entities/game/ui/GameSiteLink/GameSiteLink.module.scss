@@ -1,0 +1,23 @@
+@use '@/app/styles/mixins.scss' as *;
+
+.game_site_link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  color: var(--color-accent-30);
+  @include transition(color);
+  
+  &:hover .game_site_icon {
+    color: var(--color-accent-40);
+    @include transition(color);
+  }
+  
+  &:active .game_site_icon {
+    color: var(--color-accent-30);
+    @include transition(color);
+  }
+}
+
+

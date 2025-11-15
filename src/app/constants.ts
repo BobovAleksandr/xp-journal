@@ -1,4 +1,5 @@
 export const ROUTES = {
+  HOME: '/',
   GAMES: '/games/',
   COMPANIES: '/companies/',
   FRANCHISES: '/franchises/',

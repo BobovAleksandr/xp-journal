@@ -27,7 +27,7 @@ export default async function getGameBySlug(slug: string): Promise<TGameTwitch> 
       screenshots.image_id,
       videos.video_id,
       websites.url,
-      websites.category,
+      websites.type,
       game_type,
       dlcs;
     where slug = "${slug}";
