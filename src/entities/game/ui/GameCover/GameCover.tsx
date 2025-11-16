@@ -2,7 +2,6 @@ import { buildImageUrl } from "@/shared/utils.ts/buildImageUrl";
 import styles from "./GameCover.module.scss";
 import cn from "classnames";
 import Image from "next/image";
-import { TClientCover } from "../../model/types";
 
 const COVER_CONFIG = {
   mainPage: { width: 220, height: 300, urlVariant: "cover_big" },
@@ -15,18 +14,17 @@ type GameCoverProps = {
   className?: string;
   variant: Variant;
   name: string;
-  cover?: TClientCover;
+  cover?: string;
 };
 
 const GameCover = ({ name, cover, className, variant }: GameCoverProps) => {
-  console.log(`IMAGE ID ---------- ${cover?.imageId}`);
   const { width, height, urlVariant } = COVER_CONFIG[variant];
   return (
     <Image
       className={cn(styles.image, className)}
       src={
         cover
-          ? buildImageUrl(cover.imageId, urlVariant)
+          ? buildImageUrl(cover, urlVariant)
           : "/images/Image-error-placeholder.jpg"
       }
       width={width}

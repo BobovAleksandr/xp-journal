@@ -40,7 +40,7 @@ const GameInfo = ({
 }: GameInfoProps) => {
   return (
     <section className={cn(styles.game_content, className)}>
-      <GameCover cover={cover} name={name} variant="gamePage" />
+      <GameCover cover={cover?.imageId} name={name} variant="gamePage" />
       <div className={styles.game_info}>
         <div className={styles.game_description}>
           <GameFacts

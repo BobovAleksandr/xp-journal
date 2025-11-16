@@ -3,12 +3,11 @@ import styles from "./GameCard.module.scss";
 import cn from "classnames";
 import Link from "next/link";
 import GameCover from "../GameCover/GameCover";
-import { TClientCover } from "../../model/types";
 
 type GameCardProps = {
   className?: string;
   slug: string;
-  cover: TClientCover;
+  cover: string;
   name: string;
 };
 
