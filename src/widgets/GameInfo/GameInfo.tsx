@@ -4,6 +4,7 @@ import cn from "classnames";
 import GameFacts from "../GameFacts/GameFacts";
 import { TCompany, TFranchise, TWebsite } from "@/entities/game/model/types";
 import GameSiteLinks from "../GameSiteLinks/GameSiteLinks";
+import GameRating from "@/entities/game/ui/GameRating/GameRating";
 
 type GameInfoProps = {
   className?: string;
@@ -31,14 +32,15 @@ const GameInfo = ({
       <GameCover cover={cover} name={name} variant="gamePage" />
       <div className={styles.game_description}>
         <GameFacts
-        releaseDate={releaseDate}
-        developer={developer}
-        publisher={publisher}
-        franchise={franchise}
-      />
-      {websites && websites.length > 0 && (
-        <GameSiteLinks gameSites={websites} />
-      )}
+          releaseDate={releaseDate}
+          developer={developer}
+          publisher={publisher}
+          franchise={franchise}
+        />
+        {websites && websites.length > 0 && (
+          <GameSiteLinks gameSites={websites} />
+        )}
+        <GameRating />
       </div>
     </section>
   );

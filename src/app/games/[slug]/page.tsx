@@ -28,9 +28,6 @@ const GamePage = async ({ className, params }: GamePageProps) => {
   const franchise = franchises?.[0] || undefined;
   const filteredWebsites = websites.filter(site => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
 
-  console.log(websites);
-  console.log(filteredWebsites);
-
   return (
     <main className={cn(styles.main, className)}>
       <GameTitle name={name} type={type} />

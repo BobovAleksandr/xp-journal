@@ -29,34 +29,13 @@ export const GAME_TYPE = {
 export type TGameType = keyof typeof GAME_TYPE;
 
 export const WEBSITE_TYPE = {
-  1: {
-    title: "Официальный сайт",
-    icon: WebIcon,
-  },
-  6: {
-    title: "Twitch",
-    icon: TwitchIcon,
-  },
-  9: {
-    title: "YouTube",
-    icon: YoutubeIcon,
-  },
-  13: {
-    title: "Steam",
-    icon: SteamIcon,
-  },
-  16: {
-    title: "Epic Games Store",
-    icon: EgsIcon,
-  },
-  17: {
-    title: "GOG",
-    icon: GogIcon,
-  },
-  18: {
-    title: "Discord",
-    icon: DiscordIcon,
-  }
+  1:  { title: "Официальный сайт", icon: WebIcon },
+  6:  { title: "Twitch", icon: TwitchIcon },
+  9:  { title: "YouTube", icon: YoutubeIcon },
+  13: { title: "Steam", icon: SteamIcon },
+  16: { title: "Epic Games Store", icon: EgsIcon },
+  17: { title: "GOG", icon: GogIcon },
+  18: { title: "Discord", icon: DiscordIcon }
 } as const;
 
 

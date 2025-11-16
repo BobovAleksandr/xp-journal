@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "UserGameStatus" AS ENUM ('notCompleted', 'inProgress', 'completed', 'platinum', 'toPlay');
+
 -- CreateTable
 CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
@@ -11,10 +14,12 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "UserGame" (
-    "id" INTEGER NOT NULL,
+    "id" SERIAL NOT NULL,
     "slug" TEXT NOT NULL,
-    "status" TEXT NOT NULL,
-    "rating" DOUBLE PRECISION NOT NULL,
+    "name" TEXT NOT NULL,
+    "cover" TEXT NOT NULL,
+    "status" "UserGameStatus" NOT NULL,
+    "rating" INTEGER NOT NULL,
     "userId" INTEGER NOT NULL,
 
     CONSTRAINT "UserGame_pkey" PRIMARY KEY ("id")
