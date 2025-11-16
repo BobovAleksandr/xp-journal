@@ -20,15 +20,11 @@ const RatingStar = ({
 }: RatingStarProps) => {
   const Icon = type === "empty" ? StarIconEmpty : StarIconFilled;
   return (
-    <>
-    <button
-      className={cn(styles.star, className)}
-      onClick={onCLick}
-      title={String(id)}
-    >
-      <Icon width={32} height={32} className={styles.star_icon}/>
-    </button>
-    </>
+    <li className={cn(styles.star, className)}>
+      <button onClick={onCLick} title={String(id)} className={styles.star_button}>
+        <Icon width={32} height={32} className={styles.star_icon} />
+      </button>
+    </li>
   );
 };
 

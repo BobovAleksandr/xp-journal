@@ -4,7 +4,8 @@ import cn from "classnames";
 import GameFacts from "../GameFacts/GameFacts";
 import { TCompany, TFranchise, TWebsite } from "@/entities/game/model/types";
 import GameSiteLinks from "../GameSiteLinks/GameSiteLinks";
-import GameRating from "@/entities/game/ui/GameRating/GameRating";
+import { TUserGameStatusKey } from "@/entities/game/model/constants";
+import GameControls from "../GameControls/GameControls";
 
 type GameInfoProps = {
   className?: string;
@@ -15,6 +16,11 @@ type GameInfoProps = {
   publisher?: TCompany;
   franchise?: TFranchise;
   websites?: TWebsite[];
+  rating: number;
+  status: TUserGameStatusKey;
+  inCollection: boolean;
+  isReleased: boolean;
+  daysToRelease?: number;
 };
 
 const GameInfo = ({
@@ -26,21 +32,35 @@ const GameInfo = ({
   franchise,
   className,
   websites,
+  rating,
+  status,
+  inCollection,
+  isReleased,
+  daysToRelease,
 }: GameInfoProps) => {
   return (
-    <section className={cn(styles.game_info, className)}>
+    <section className={cn(styles.game_content, className)}>
       <GameCover cover={cover} name={name} variant="gamePage" />
-      <div className={styles.game_description}>
-        <GameFacts
-          releaseDate={releaseDate}
-          developer={developer}
-          publisher={publisher}
-          franchise={franchise}
+      <div className={styles.game_info}>
+        <div className={styles.game_description}>
+          <GameFacts
+            releaseDate={releaseDate}
+            isReleased={isReleased}
+            daysToRelease={daysToRelease}
+            developer={developer}
+            publisher={publisher}
+            franchise={franchise}
+          />
+          {websites && websites.length > 0 && (
+            <GameSiteLinks gameSites={websites} />
+          )}
+        </div>
+        <GameControls
+          isReleased={isReleased}
+          rating={rating}
+          status={status}
+          inCollection={inCollection}
         />
-        {websites && websites.length > 0 && (
-          <GameSiteLinks gameSites={websites} />
-        )}
-        <GameRating />
       </div>
     </section>
   );

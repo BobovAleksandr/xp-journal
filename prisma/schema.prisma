@@ -25,7 +25,7 @@ enum UserGameStatus {
 }
 
 model UserGame {
-  id       Int            @id @default(autoincrement())
+  id       Int            @id
   slug     String
   name     String
   cover    String

@@ -1,7 +1,13 @@
-.game_info {
+.game_content {
   display: flex;
   flex-direction: row;
   gap: var(--space-xl);
+}
+
+.game_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .game_description {

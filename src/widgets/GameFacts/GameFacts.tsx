@@ -11,6 +11,8 @@ type GameFactsProps = {
   developer?: TCompany;
   publisher?: TCompany;
   franchise?: TFranchise;
+  isReleased: boolean;
+  daysToRelease?: number;
 };
 
 const GameFacts = ({
@@ -19,18 +21,9 @@ const GameFacts = ({
   publisher,
   franchise,
   className,
+  isReleased,
+  daysToRelease,
 }: GameFactsProps) => {
-  const todayDate = new Date();
-  const releaseDateObj = releaseDate ? new Date(releaseDate * 1000) : null;
-
-  const daysToRelease = releaseDateObj
-    ? Math.ceil(
-        (releaseDateObj.getTime() - todayDate.getTime()) / (1000 * 60 * 60 * 24)
-      )
-    : null;
-
-  const isReleased = daysToRelease !== null && daysToRelease <= 0;
-
   return (
     <div className={cn(styles.facts, className)}>
       {releaseDate && (
@@ -42,7 +35,7 @@ const GameFacts = ({
               value={convertDate(releaseDate)}
             />
           )}
-          {daysToRelease !== null && !isReleased && (
+          {daysToRelease && !isReleased && (
             <GameFact
               variant="text"
               title="Дней до выхода"
