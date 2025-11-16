@@ -3,7 +3,7 @@ export default function calculateDaysToRelease(releaseDate: number) {
 
   const today = new Date();
   const release = new Date(releaseDate * 1000);
-  const days = Math.ceil((release.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
+  const days = Math.round((release.getTime() - today.getTime()) / (1000 * 60 * 60 * 24));
 
   if (days <= 0) {
     return { isReleased: true };

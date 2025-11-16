@@ -24,6 +24,7 @@ export const GAME_TYPE = {
   2: "Дополнение",
   3: "Сборник",
   4: "Отдельное дополнение",
+  14: "Обновление",
 } as const;
 
 export type TGameType = keyof typeof GAME_TYPE;
