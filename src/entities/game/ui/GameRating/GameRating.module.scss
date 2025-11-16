@@ -3,10 +3,15 @@
   flex-direction: row;
   align-items: center;
   gap: var(--space-m);
+
 }
 
 .stars_list {
   display: flex;
   flex-direction: row;
   gap: var(--space-xs);
+  &:hover,
+  &:hover * {
+    cursor: pointer;
+  }
 }

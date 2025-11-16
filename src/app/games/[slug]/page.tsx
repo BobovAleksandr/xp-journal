@@ -16,19 +16,19 @@ const GamePage = async ({ className, params }: GamePageProps) => {
   const { slug } = await params;
 
   const {
-    game_type: type,
+    gameType,
     name,
     cover,
-    first_release_date: releaseDate,
-    involved_companies,
+    releaseDate,
+    companies,
     franchises,
     websites
   } = await getGameBySlug(slug);
 
   const userGame = await getUserGameBySlug(slug);
 
-  const publisher = involved_companies.find((company) => company.publisher)?.company || undefined;
-  const developer = involved_companies.find((company) => company.developer)?.company || undefined;
+  const publisher = companies.find((company) => company.publisher)?.company || undefined;
+  const developer = companies.find((company) => company.developer)?.company || undefined;
   const franchise = franchises?.[0] || undefined;
   const filteredWebsites = websites.filter(site => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
   const rating = userGame?.rating || 0
@@ -42,9 +42,9 @@ const GamePage = async ({ className, params }: GamePageProps) => {
 
   return (
     <main className={cn(styles.main, className)}>
-      <GameTitle name={name} type={type} />
+      <GameTitle name={name} gameType={gameType} />
       <GameInfo
-        cover={cover?.image_id}
+        cover={cover}
         name={name}
         releaseDate={releaseDate}
         developer={developer}

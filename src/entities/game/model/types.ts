@@ -1,20 +1,32 @@
 import { TGameType, TUserGameStatusKey, TWebsiteType } from "./constants";
 
-export type TGameTwitch = {
+// Тип данных игры с IGDB
+export type TGameIgdb = {
   id: number;
   slug: string;
   name: string;
-  cover?: TCover;
+  cover?: TIgdbCover;
   first_release_date?: number;
   franchises?: TFranchise[];
   involved_companies: TInvolvedCompany[];
-  screenshots: TScreenshot[];
-  videos: TVideo[];
+  screenshots: TIgdbScreenshot[];
+  videos: TIgdbVideo[];
   websites: TWebsite[];
   game_type: TGameType;
   dlcs?: number[];
 };
 
+// Тип данных игры в проекте
+export type TGameClient = Omit<TGameIgdb, "first_release_date" | "involved_companies" | "game_type" | "cover" | "screenshots" | "videos"> & {
+  releaseDate?: number;
+  companies: TInvolvedCompany[];
+  gameType: TGameType;
+  cover?: TClientCover;
+  screenshots: TClientScreenshot[];
+  videos: TClientVideo[];
+}
+
+// Тип данных игры пользователя из БД
 export type TGameUser = {
   id: number;
   slug: string;
@@ -24,12 +36,14 @@ export type TGameUser = {
   rating: number;
 }
 
-export type TGameClient = TGameTwitch & TGameUser
-
-export type TCover = {
+export type TIgdbCover = {
   id: number;
   image_id: string;
 };
+
+export type TClientCover = Omit<TIgdbCover, "image_id"> & {
+  imageId: string;
+}
 
 export type TFranchise = {
   slug: string;
@@ -47,14 +61,22 @@ export type TInvolvedCompany = {
   publisher: boolean;
 };
 
-export type TScreenshot = {
+export type TIgdbScreenshot = {
   id: number;
   image_id: string;
 };
 
-export type TVideo = {
+export type TClientScreenshot = Omit<TIgdbScreenshot, "image_id"> & {
+  imageId: string;
+}
+
+export type TIgdbVideo = {
   id: number;
   video_id: string;
+};
+
+export type TClientVideo = Omit<TIgdbVideo, "video_id"> & {
+  videoId: string;
 };
 
 export type TWebsite = {

@@ -2,14 +2,14 @@ import GameCover from "@/entities/game/ui/GameCover/GameCover";
 import styles from "./GameInfo.module.scss";
 import cn from "classnames";
 import GameFacts from "../GameFacts/GameFacts";
-import { TCompany, TFranchise, TWebsite } from "@/entities/game/model/types";
+import { TClientCover, TCompany, TFranchise, TWebsite } from "@/entities/game/model/types";
 import GameSiteLinks from "../GameSiteLinks/GameSiteLinks";
 import { TUserGameStatusKey } from "@/entities/game/model/constants";
 import GameControls from "../GameControls/GameControls";
 
 type GameInfoProps = {
   className?: string;
-  cover?: string;
+  cover?: TClientCover;
   name: string;
   releaseDate?: number;
   developer?: TCompany;

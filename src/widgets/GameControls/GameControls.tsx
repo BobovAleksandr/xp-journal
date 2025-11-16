@@ -8,8 +8,8 @@ import { TUserGameStatusKey } from "@/entities/game/model/constants";
 import gameStatusAction from "./actions/gameStatusAction";
 
 type GameControlsProps = {
-  rating: number;
   className?: string;
+  rating: number;
   status: TUserGameStatusKey;
   inCollection: boolean;
   isReleased: boolean;
