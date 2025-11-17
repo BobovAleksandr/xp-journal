@@ -1,7 +1,7 @@
 'use server';
 
 import { TGameUser } from "@/entities/game/model/types";
-import { prisma } from "../lib/prisma";
+import { prisma } from "../../lib/prisma";
 
 export async function getUserGameBySlug(slug: string): Promise<TGameUser | null> {
   try {

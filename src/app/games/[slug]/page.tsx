@@ -1,10 +1,10 @@
-import getGameBySlug from "@/shared/api/getGameBySlug";
+import getGameBySlug from "@/shared/api/toIgdb/getGameBySlug";
 import styles from "./page.module.scss";
 import cn from "classnames";
 import GameInfo from "@/widgets/GameInfo/GameInfo";
 import GameTitle from "@/widgets/GameTitle/GameTitle";
 import { TUserGameStatusKey, WEBSITE_TYPE } from "@/entities/game/model/constants";
-import { getUserGameBySlug } from "@/shared/api/getUserGameBySlug";
+import { getUserGameBySlug } from "@/shared/api/toDb/getUserGameBySlug";
 import calculateDaysToRelease from "@/shared/utils.ts/calculateDaysToRelease";
 
 type GamePageProps = {

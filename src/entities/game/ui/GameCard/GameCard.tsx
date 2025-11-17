@@ -7,7 +7,7 @@ import GameCover from "../GameCover/GameCover";
 type GameCardProps = {
   className?: string;
   slug: string;
-  cover: string;
+  cover?: string;
   name: string;
 };
 

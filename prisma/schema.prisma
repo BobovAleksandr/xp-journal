@@ -26,9 +26,6 @@ enum UserGameStatus {
 
 model UserGame {
   id       Int            @id
-  slug     String
-  name     String
-  cover    String
   status   UserGameStatus
   rating   Int
   userId   Int

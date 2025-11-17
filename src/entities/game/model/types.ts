@@ -29,12 +29,15 @@ export type TGameClient = Omit<TGameIgdb, "first_release_date" | "involved_compa
 // Тип данных игры пользователя из БД
 export type TGameUser = {
   id: number;
-  slug: string;
   status: TUserGameStatusKey;
-  cover: string;
-  name: string;
   rating: number;
 }
+
+// Тип данных игр для главной страницы с IGDB
+export type TIgdbGamesForMain = Pick<TGameIgdb, "id" | "name" | "cover" | "slug">
+
+// Тип данных игр для главной страницы для клиента
+export type TClientGamesForMain = Pick<TGameClient, "id" | "name" | "cover" | "slug">
 
 export type TIgdbCover = {
   id: number;
