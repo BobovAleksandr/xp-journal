@@ -4,7 +4,7 @@ import cn from "classnames";
 import GameInfo from "@/widgets/GameInfo/GameInfo";
 import GameTitle from "@/widgets/GameTitle/GameTitle";
 import { TUserGameStatusKey, WEBSITE_TYPE } from "@/entities/game/model/constants";
-import { getUserGameBySlug } from "@/shared/api/toDb/getUserGameBySlug";
+import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
 import calculateDaysToRelease from "@/shared/utils.ts/calculateDaysToRelease";
 
 type GamePageProps = {
@@ -16,6 +16,7 @@ const GamePage = async ({ className, params }: GamePageProps) => {
   const { slug } = await params;
 
   const {
+    id,
     gameType,
     name,
     cover,
@@ -25,7 +26,7 @@ const GamePage = async ({ className, params }: GamePageProps) => {
     websites
   } = await getGameBySlug(slug);
 
-  const userGame = await getUserGameBySlug(slug);
+  const userGame = await getUserGameById(id);
 
   const publisher = companies.find((company) => company.publisher)?.company || undefined;
   const developer = companies.find((company) => company.developer)?.company || undefined;
