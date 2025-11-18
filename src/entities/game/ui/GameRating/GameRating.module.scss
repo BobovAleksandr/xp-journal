@@ -9,7 +9,7 @@
 .stars_list {
   display: flex;
   flex-direction: row;
-  gap: var(--space-xs);
+  // gap: var(--space-xs);
   &:hover,
   &:hover * {
     cursor: pointer;

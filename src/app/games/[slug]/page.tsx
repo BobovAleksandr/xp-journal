@@ -24,7 +24,9 @@ const GamePage = async ({ className, params }: GamePageProps) => {
     releaseDate,
     companies,
     collection,
-    websites
+    websites,
+    genres,
+    platforms,
   } = await getGameBySlug(slug);
 
   const userGame = await getUserGameById(id);
@@ -45,6 +47,8 @@ const GamePage = async ({ className, params }: GamePageProps) => {
     <main className={cn(styles.main, className)}>
       <GameTitle name={name} gameType={gameType} />
       <GameInfo
+        genres={genres}
+        platforms={platforms}
         cover={cover}
         name={name}
         releaseDate={releaseDate}

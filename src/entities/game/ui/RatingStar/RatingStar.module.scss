@@ -2,7 +2,7 @@
 
 .star {
   
-  padding: 3px;
+  padding: var(--space-s) var(--space-xs);
   &:hover .star_icon {
     color: var(--color-accent-40);
     @include transition(color);

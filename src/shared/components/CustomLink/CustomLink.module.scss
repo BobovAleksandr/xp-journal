@@ -5,6 +5,7 @@
   align-items: center;
   flex-direction: row;
   gap: var(--space-s);
+  text-wrap: nowrap;
   @include transition(color);
   
   &:hover {
@@ -15,5 +16,9 @@
   &:active {
     color: var(--color-accent-40);
     @include transition(color);
+  }
+
+  & svg {
+    flex: 0 0 16px;;
   }
 }

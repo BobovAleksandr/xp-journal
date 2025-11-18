@@ -16,6 +16,7 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
       slug, 
       name,
       genres.name,
+      platforms.name,
       cover.image_id,
       first_release_date,
       collections.name,

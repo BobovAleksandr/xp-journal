@@ -14,10 +14,20 @@ export type TGameIgdb = {
   websites: TWebsite[];
   game_type: TGameType;
   dlcs?: number[];
+  platforms: TPltaform[];
+  genres: TGenre[];
 };
 
 // Тип данных игры в проекте
-export type TGameClient = Omit<TGameIgdb, "first_release_date" | "involved_companies" | "game_type" | "cover" | "screenshots" | "videos" | "collections"> & {
+export type TGameClient = Omit<TGameIgdb, 
+  "first_release_date" | 
+  "involved_companies" | 
+  "game_type" | 
+  "cover" | 
+  "screenshots" | 
+  "videos" | 
+  "collections"
+> & {
   releaseDate?: number;
   companies: TInvolvedCompany[];
   gameType: TGameType;
@@ -88,5 +98,15 @@ export type TWebsite = {
   url: string;
   type?: TWebsiteType;
 };
+
+export type TPltaform = {
+  id: number;
+  name: string;
+}
+
+export type TGenre = {
+  id: number;
+  name: string;
+}
 
 
