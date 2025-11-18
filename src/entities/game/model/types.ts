@@ -7,7 +7,7 @@ export type TGameIgdb = {
   name: string;
   cover?: TIgdbCover;
   first_release_date?: number;
-  franchises?: TFranchise[];
+  collections?: TCollection[];
   involved_companies: TInvolvedCompany[];
   screenshots: TIgdbScreenshot[];
   videos: TIgdbVideo[];
@@ -17,13 +17,14 @@ export type TGameIgdb = {
 };
 
 // Тип данных игры в проекте
-export type TGameClient = Omit<TGameIgdb, "first_release_date" | "involved_companies" | "game_type" | "cover" | "screenshots" | "videos"> & {
+export type TGameClient = Omit<TGameIgdb, "first_release_date" | "involved_companies" | "game_type" | "cover" | "screenshots" | "videos" | "collections"> & {
   releaseDate?: number;
   companies: TInvolvedCompany[];
   gameType: TGameType;
   cover?: TClientCover;
   screenshots: TClientScreenshot[];
   videos: TClientVideo[];
+  collection?: TCollection;
 }
 
 // Тип данных игры пользователя из БД
@@ -48,7 +49,7 @@ export type TClientCover = Omit<TIgdbCover, "image_id"> & {
   imageId: string;
 }
 
-export type TFranchise = {
+export type TCollection = {
   slug: string;
   name: string;
 };

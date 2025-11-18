@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./styles/globals.scss";
 import "./styles/variables.scss";
 import { ReactNode } from "react";
 import Header from '@/widgets/Header/Header'
 
-const motoSansMono = Noto_Sans_Mono({
-  variable: "--font-moto-sans",
+const inter = Inter({
+  variable: "--inter",
   weight: ["400", "500"],
   subsets: ["cyrillic", "latin"],
 });
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="ru" className={motoSansMono.className}>
+    <html lang="ru" className={inter.className}>
       <body>
         <Header />
         {children}

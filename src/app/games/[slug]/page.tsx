@@ -6,6 +6,7 @@ import GameTitle from "@/widgets/GameTitle/GameTitle";
 import { TUserGameStatusKey, WEBSITE_TYPE } from "@/entities/game/model/constants";
 import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
 import calculateDaysToRelease from "@/shared/utils.ts/calculateDaysToRelease";
+import { TCompany } from "@/entities/game/model/types";
 
 type GamePageProps = {
   className?: string;
@@ -22,15 +23,14 @@ const GamePage = async ({ className, params }: GamePageProps) => {
     cover,
     releaseDate,
     companies,
-    franchises,
+    collection,
     websites
   } = await getGameBySlug(slug);
 
   const userGame = await getUserGameById(id);
 
-  const publisher = companies.find((company) => company.publisher)?.company || undefined;
-  const developer = companies.find((company) => company.developer)?.company || undefined;
-  const franchise = franchises?.[0] || undefined;
+  const publishers: TCompany[] = companies.filter(c => c.publisher).map(c => c.company);
+  const developers: TCompany[] = companies.filter(c => c.developer).map(c => c.company);
   const filteredWebsites = websites.filter(site => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
   const rating = userGame?.rating || 0
   const status = userGame?.status || "notCompleted" satisfies TUserGameStatusKey
@@ -48,9 +48,9 @@ const GamePage = async ({ className, params }: GamePageProps) => {
         cover={cover}
         name={name}
         releaseDate={releaseDate}
-        developer={developer}
-        publisher={publisher}
-        franchise={franchise}
+        developers={developers}
+        publishers={publishers}
+        collection={collection}
         websites={filteredWebsites}
         rating={rating}
         status={status}

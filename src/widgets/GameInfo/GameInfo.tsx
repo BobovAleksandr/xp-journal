@@ -2,7 +2,7 @@ import GameCover from "@/entities/game/ui/GameCover/GameCover";
 import styles from "./GameInfo.module.scss";
 import cn from "classnames";
 import GameFacts from "../GameFacts/GameFacts";
-import { TClientCover, TCompany, TFranchise, TWebsite } from "@/entities/game/model/types";
+import { TClientCover, TCompany, TCollection, TWebsite } from "@/entities/game/model/types";
 import GameSiteLinks from "../GameSiteLinks/GameSiteLinks";
 import { TUserGameStatusKey } from "@/entities/game/model/constants";
 import GameControls from "../GameControls/GameControls";
@@ -12,9 +12,9 @@ type GameInfoProps = {
   cover?: TClientCover;
   name: string;
   releaseDate?: number;
-  developer?: TCompany;
-  publisher?: TCompany;
-  franchise?: TFranchise;
+  developers?: TCompany[];
+  publishers?: TCompany[];
+  collection?: TCollection;
   websites?: TWebsite[];
   rating: number;
   status: TUserGameStatusKey;
@@ -27,9 +27,9 @@ const GameInfo = ({
   cover,
   name,
   releaseDate,
-  developer,
-  publisher,
-  franchise,
+  developers,
+  publishers,
+  collection,
   className,
   websites,
   rating,
@@ -47,9 +47,9 @@ const GameInfo = ({
             releaseDate={releaseDate}
             isReleased={isReleased}
             daysToRelease={daysToRelease}
-            developer={developer}
-            publisher={publisher}
-            franchise={franchise}
+            developers={developers}
+            publishers={publishers}
+            collection={collection}
           />
           {websites && websites.length > 0 && (
             <GameSiteLinks gameSites={websites} />

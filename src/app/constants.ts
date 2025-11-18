@@ -2,7 +2,7 @@ export const ROUTES = {
   HOME: '/',
   GAMES: '/games/',
   COMPANIES: '/companies/',
-  FRANCHISES: '/franchises/',
+  COLLECTIONS: '/series/',
 } as const;
 
 export const ENDPOINTS = {

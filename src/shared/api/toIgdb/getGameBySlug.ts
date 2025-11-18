@@ -14,14 +14,14 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
     fields 
       id, 
       slug, 
-      name, 
+      name,
+      genres.name,
       cover.image_id,
       first_release_date,
-      franchises.name,
-      franchises.slug,
+      collections.name,
+      collections.slug,
       involved_companies.company.name,
       involved_companies.company.slug,
-      involved_companies.company.logo.image_id,
       involved_companies.developer,
       involved_companies.publisher,
       screenshots.image_id,
@@ -29,7 +29,8 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
       websites.url,
       websites.type,
       game_type,
-      dlcs;
+      dlcs,
+      expansions;
     where slug = "${slug}";
     limit 1;
   `,
@@ -45,8 +46,8 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
     throw new Error('Игра не найдена');
   }
 
-  // Переименовываем поля в camelCase
-  const { first_release_date, involved_companies, game_type, cover, screenshots, videos, ...rest } = data[0];
+  // Мапим и переименовываем поля в camelCase
+  const { first_release_date, involved_companies, game_type, cover, screenshots, videos, collections, ...rest } = data[0];
 
   const formatedData: TGameClient = {
     ...rest,
@@ -56,6 +57,7 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
     cover: cover ? { id: cover?.id, imageId: cover?.image_id } : undefined,
     screenshots: screenshots?.map(s => ({ id: s.id, imageId: s.image_id })) ?? [],
     videos: videos?.map(s => ({ id: s.id, videoId: s.video_id })) ?? [],
+    collection: collections ? {slug: collections?.[0].slug, name: collections?.[0].name} : undefined
   };
 
   return formatedData;

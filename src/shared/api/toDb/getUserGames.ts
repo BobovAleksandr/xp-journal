@@ -3,7 +3,7 @@
 import { prisma } from '@/shared/lib/prisma';
 import { TGameUser } from '@/entities/game/model/types';
 
-export default async function getUserGames(userId: number): Promise<TGameUser[]> {
+export default async function getUserGames(userId: string): Promise<TGameUser[]> {
   const userGames = await prisma.userGame.findMany({
     where: { userId },
   });

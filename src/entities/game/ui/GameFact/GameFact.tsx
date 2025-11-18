@@ -1,43 +1,82 @@
-import CustomLink from "@/shared/components/CustomLink/CustomLink";
+import CustomLink, {
+  TCustomLink,
+} from "@/shared/components/CustomLink/CustomLink";
 import styles from "./GameFact.module.scss";
 import cn from "classnames";
+import { Span } from "@/shared/components/Typography/Typography";
 
 type BaseFact = {
-  value: string;
   title: string;
   className?: string;
 };
 
 type TextFact = BaseFact & {
   variant: "text";
+  content: string | string[];
 };
 
 type LinkFact = BaseFact & {
   variant: "link";
-  href: string;
-  isExternal?: boolean;
+  content: TCustomLink | TCustomLink[];
 };
 
 type GameFactProps = TextFact | LinkFact;
 
 const GameFact = (props: GameFactProps) => {
-  const { title, value, className } = props;
+  const { title, content, className, variant } = props;
 
   return (
     <div className={cn(styles.game_fact, className)}>
-      <span className={styles.game_fact__title}>{title}</span>
-      {props.variant === "text" ? (
-        <span className={styles.game_fact__value}>{value}</span>
-      ) : (
-        <CustomLink
-          href={props.href}
-          variant={props.isExternal ? "external" : "internal"}
-        >
-          {value}
-        </CustomLink>
-      )}
+      <Span weight="semibold" className={styles.game_fact__title}>
+        {title}
+      </Span>
+      <ul className={styles.game_fact__values}>
+        
+        {variant === "text" && (
+          <>
+            {Array.isArray(content) ? (
+              content.map((text, index) => <li key={index}>{text}</li>)
+            ) : (
+              <li>{content}</li>
+            )}
+          </>
+        )}
+
+        {variant === "link" && (
+          <>
+            {Array.isArray(content) ? (
+              content.map((link, index) => (
+                <li key={index}>
+                  <CustomLink {...link} />
+                </li>
+              ))
+            ) : (
+              <li>
+                <CustomLink {...content} />
+              </li>
+            )}
+          </>
+        )}
+      </ul>
     </div>
   );
 };
 
 export default GameFact;
+
+{
+  /* {values.map((value, index) => (
+  <li key={`${value.length + index}`}>
+    {props.variant === "text" ? (
+      <Span className={styles.game_fact__value}>{value}</Span>
+    ) : (
+      <CustomLink
+        href={props.href}
+        variant={props.isExternal ? "external" : "internal"}
+      >
+        {value}
+      </CustomLink>
+    )}
+  </li>
+))} */
+}

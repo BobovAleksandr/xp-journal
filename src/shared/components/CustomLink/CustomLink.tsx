@@ -4,10 +4,13 @@ import cn from "classnames";
 import ExtrnalIcon from "@/shared/assets/external-link.svg";
 import InternalIcon from "@/shared/assets/link.svg";
 
-type CustomLinkProps = {
+export type TCustomLink = {
   children: string;
   href: string;
   variant: "internal" | "external";
+}
+
+type CustomLinkProps = TCustomLink & {
   className?: string;
 };
 

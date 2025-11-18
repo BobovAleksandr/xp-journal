@@ -15,7 +15,9 @@ const GameTitle = ({ name, gameType, className }: GameTitleProps) => {
   return (
     <section className={cn(styles.game_title, className)}>
       <H1>{name}</H1>
-      <Chips variant="outline">{GAME_TYPE[gameType]}</Chips>
+      {GAME_TYPE[gameType] && (
+        <Chips variant="outline">{GAME_TYPE[gameType]}</Chips>
+      )}
     </section>
   );
 };
