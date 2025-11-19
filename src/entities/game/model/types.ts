@@ -16,17 +16,19 @@ export type TGameIgdb = {
   dlcs?: number[];
   platforms: TPltaform[];
   genres: TGenre[];
+  expansions?: TIgdbExpansion[];
 };
 
 // Тип данных игры в проекте
-export type TGameClient = Omit<TGameIgdb, 
-  "first_release_date" | 
-  "involved_companies" | 
-  "game_type" | 
-  "cover" | 
-  "screenshots" | 
-  "videos" | 
-  "collections"
+export type TGameClient = Omit<TGameIgdb,
+  "first_release_date" |
+  "involved_companies" |
+  "game_type" |
+  "cover" |
+  "screenshots" |
+  "videos" |
+  "collections" |
+  "expansions"
 > & {
   releaseDate?: number;
   companies: TInvolvedCompany[];
@@ -35,6 +37,7 @@ export type TGameClient = Omit<TGameIgdb,
   screenshots: TClientScreenshot[];
   videos: TClientVideo[];
   collection?: TCollection;
+  expansions?: TClientExpansion[];
 }
 
 // Тип данных игры пользователя из БД
@@ -107,6 +110,19 @@ export type TPltaform = {
 export type TGenre = {
   id: number;
   name: string;
+}
+
+export type TIgdbExpansion = {
+  id: number;
+  cover: TIgdbCover;
+  name: string;
+  slug: string;
+  first_release_date?: number;
+}
+
+export type TClientExpansion = Omit<TIgdbExpansion, "cover" | "first_release_date"> & {
+  cover: TClientCover;
+  releaseDate?: number;
 }
 
 

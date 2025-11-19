@@ -31,7 +31,10 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
       websites.type,
       game_type,
       dlcs,
-      expansions;
+      expansions.name,
+      expansions.first_release_date,
+      expansions.cover.image_id,
+      expansions.slug;
     where slug = "${slug}";
     limit 1;
   `,
@@ -48,7 +51,7 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
   }
 
   // Мапим и переименовываем поля в camelCase
-  const { first_release_date, involved_companies, game_type, cover, screenshots, videos, collections, ...rest } = data[0];
+  const { first_release_date, involved_companies, game_type, cover, screenshots, videos, collections, expansions, ...rest } = data[0];
 
   const formatedData: TGameClient = {
     ...rest,
@@ -58,7 +61,14 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
     cover: cover ? { id: cover?.id, imageId: cover?.image_id } : undefined,
     screenshots: screenshots?.map(s => ({ id: s.id, imageId: s.image_id })) ?? [],
     videos: videos?.map(s => ({ id: s.id, videoId: s.video_id })) ?? [],
-    collection: collections ? {slug: collections?.[0].slug, name: collections?.[0].name} : undefined
+    collection: collections ? { slug: collections?.[0].slug, name: collections?.[0].name } : undefined,
+    expansions: expansions ? expansions.map((exp) => ({
+      id: exp.id, name: exp.name, slug: exp.slug, releaseDate: exp.first_release_date,
+      cover: {
+        id: exp.cover.id,
+        imageId: exp.cover.image_id,
+      },
+    })) : undefined,
   };
 
   return formatedData;
