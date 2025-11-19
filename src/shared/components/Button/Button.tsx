@@ -1,27 +1,63 @@
 import { ComponentType, HTMLAttributes, SVGProps } from "react";
 import styles from "./Button.module.scss";
 import cn from "classnames";
+import Link from "next/link";
 
 type ButtonVariant = "default" | "outline" | "light";
 
 type ButtonProps = {
-  children: string;
+  children: React.ReactNode;
   className?: string;
   variant: ButtonVariant;
+  as?: "button" | "internalLink" | "externalLink";
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
-} & HTMLAttributes<HTMLButtonElement>;
+  href?: string;
+} & Omit<HTMLAttributes<HTMLButtonElement | HTMLAnchorElement>, "href">;
 
 const Button = ({
   children,
   className,
   variant,
   icon,
+  as = "button",
+  href,
   ...rest
 }: ButtonProps) => {
   const Icon = icon;
+
+  const buttonClassName = cn(styles.button, styles[variant], className);
+  const ButtonIcon = () => {
+    if (!Icon) return null;
+    return <Icon width="1em" height="1em" className={styles.icon} />;
+  };
+
+  if (as === "internalLink") {
+    return (
+      <Link href={href ?? ""} className={buttonClassName} {...rest}>
+        <ButtonIcon />
+        {children}
+      </Link>
+    );
+  }
+
+  if (as === "externalLink") {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={buttonClassName}
+        {...rest}
+      >
+        <ButtonIcon />
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button className={cn(styles.button, styles[variant], className)} {...rest}>
-      {Icon && <Icon width={'1em'} height={'1em'} className={styles.icon} />}
+    <button className={buttonClassName} {...rest}>
+      <ButtonIcon />
       {children}
     </button>
   );

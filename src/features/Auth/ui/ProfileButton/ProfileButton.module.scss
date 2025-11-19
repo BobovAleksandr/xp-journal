@@ -1,0 +1,11 @@
+.profile_button {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.profile_button__avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+}

@@ -5,7 +5,7 @@ import GameInfo from "@/widgets/GameInfo/GameInfo";
 import GameTitle from "@/widgets/GameTitle/GameTitle";
 import { TUserGameStatusKey, WEBSITE_TYPE } from "@/entities/game/model/constants";
 import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
-import calculateDaysToRelease from "@/shared/utils.ts/calculateDaysToRelease";
+import calculateDaysToRelease from "@/shared/utils/calculateDaysToRelease";
 import { TCompany } from "@/entities/game/model/types";
 
 type GamePageProps = {

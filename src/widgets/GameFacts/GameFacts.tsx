@@ -7,8 +7,8 @@ import {
   TPltaform,
   TGenre,
 } from "@/entities/game/model/types";
-import convertDate from "@/shared/utils.ts/convertDate";
-import { ROUTES } from "@/app/constants";
+import convertDate from "@/shared/utils/convertDate";
+import { PUBLIC_ROUTES } from "@/app/constants";
 
 type GameFactsProps = {
   className?: string;
@@ -36,13 +36,13 @@ const GameFacts = ({
 
   const developersLinks = developers?.map((dev) => ({
     children: dev.name,
-    href: `${ROUTES.COMPANIES}${dev.slug}`,
+    href: `${PUBLIC_ROUTES.COMPANIES}${dev.slug}`,
     variant: "internal" as const,
   }));
 
   const publishersLinks = publishers?.map((pub) => ({
     children: pub.name,
-    href: `${ROUTES.COMPANIES}${pub.slug}`,
+    href: `${PUBLIC_ROUTES.COMPANIES}${pub.slug}`,
     variant: "internal" as const,
   }));
 
@@ -89,7 +89,7 @@ const GameFacts = ({
             title="Серия"
             content={{
               children: collection.name,
-              href: `${ROUTES.COLLECTIONS}${collection.slug}`,
+              href: `${PUBLIC_ROUTES.COLLECTIONS}${collection.slug}`,
               variant: "internal",
             }}
           />

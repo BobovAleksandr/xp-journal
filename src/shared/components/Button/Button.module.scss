@@ -11,13 +11,17 @@
   font-family: inherit;
   font-size: var(--font-size-m);
   @include transition;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .default {
-  background-color: var(--color-accent-30);
+  background-color: var(--color-accent-10);
   
   &:hover {
-    background-color: var(--color-accent-40);
+    background-color: var(--color-accent-20);
     @include transition(background-color);
   }
 
@@ -33,7 +37,7 @@
   background-color: transparent;
 
   &:hover {
-    background-color: var(--color-accent-10);
+    background-color: var(--color-accent-20);
     @include transition;
   }
 
@@ -45,10 +49,10 @@
 }
 
 .light {
-  background-color: var(--color-accent-10);
+  background-color: var(--color-accent-30);
 
     &:hover {
-    background-color: var(--color-accent-20);
+    background-color: var(--color-accent-40);
     @include transition(background-color);
   }
 

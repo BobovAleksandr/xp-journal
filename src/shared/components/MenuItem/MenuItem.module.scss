@@ -1,0 +1,23 @@
+@use '@/app/styles/mixins.scss' as *;
+
+.menu_item {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: var(--space-s) var(--space-m);
+  color: var(--color-light-25);
+  background-color: var(--color-accent-10);
+  @include transition(background-color);
+  
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-accent-20);
+    @include transition(background-color);
+  }
+  
+  &:active {
+    background-color: var(--color-accent-30);
+    @include transition(background-color);
+  }
+}

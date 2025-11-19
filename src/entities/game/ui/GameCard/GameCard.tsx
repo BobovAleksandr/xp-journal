@@ -1,4 +1,4 @@
-import { ROUTES } from "@/app/constants";
+import { PUBLIC_ROUTES } from "@/app/constants";
 import styles from "./GameCard.module.scss";
 import cn from "classnames";
 import Link from "next/link";
@@ -14,7 +14,7 @@ type GameCardProps = {
 const GameCard = ({ cover, slug, name, className }: GameCardProps) => {
   return (
     <Link
-      href={`${ROUTES.GAMES}${slug}/`}
+      href={`${PUBLIC_ROUTES.GAMES}${slug}/`}
       className={cn(styles.card, className)}
       title={name}
     >

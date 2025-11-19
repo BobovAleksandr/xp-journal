@@ -1,6 +1,6 @@
 import { TGameUser } from "../game/model/types";
 
-export type TUser = {
+export type TDbUser = {
   id: number;
   email: string;
   name: string;

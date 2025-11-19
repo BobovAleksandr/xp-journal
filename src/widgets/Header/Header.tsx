@@ -1,22 +1,30 @@
-import SearchInput from '@/shared/components/SearchInput/SearchInput';
-import styles from './Header.module.scss';
-import cn from 'classnames';
-import Logo from '@/shared/components/Logo/Logo';
+import SearchInput from "@/shared/components/SearchInput/SearchInput";
+import styles from "./Header.module.scss";
+import cn from "classnames";
+import Logo from "@/shared/components/Logo/Logo";
+import LoginBlock from "@/features/Auth/ui/LoginBlock/LoginBlock";
+import { memo } from "react";
+import getCurrentSession from "@/features/Auth/getCurrentSession";
+import { cookies } from "next/headers";
 
 type HeaderProps = {
   className?: string;
-}
+};
 
-const Header = ({ className }: HeaderProps) => {
+const Header = async ({ className }: HeaderProps) => {
+  const currentCookies = (await cookies()).toString();
+  const user = (await getCurrentSession(currentCookies))?.user;
+
   return (
     <header className={cn(styles.header, className)}>
       <Logo />
       <div className={styles.filters}>
-        <div>filter</div>
-        <SearchInput name='search' placeholder='Поиск'/>
+        <div>TODO filter</div>
+        <SearchInput name="search" placeholder="Поиск" />
+        <LoginBlock user={user}/>
       </div>
     </header>
   );
 };
 
-export default Header;
+export default memo(Header);

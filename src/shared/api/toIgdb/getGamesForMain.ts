@@ -4,6 +4,9 @@ import { BASE_URL, ENDPOINTS } from "@/app/constants";
 import { TClientGamesForMain, TIgdbGamesForMain } from "@/entities/game/model/types";
 
 export default async function getGamesForMain(ids: number[]): Promise<TClientGamesForMain[]> {
+  
+  if (ids.length === 0) return [];
+  
   const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
     method: 'POST',
     headers: {

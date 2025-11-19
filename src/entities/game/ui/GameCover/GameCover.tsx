@@ -1,4 +1,4 @@
-import { buildImageUrl } from "@/shared/utils.ts/buildImageUrl";
+import { buildImageUrl } from "@/shared/utils/buildImageUrl";
 import styles from "./GameCover.module.scss";
 import cn from "classnames";
 import Image from "next/image";
