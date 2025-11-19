@@ -13,8 +13,7 @@ type GamePageProps = {
   params: Promise<{ slug: string }>;
 };
 
-const GamePage = async ({ className, params }: GamePageProps) => {
-  const { slug } = await params;
+export default async function GamePage({ className, params }: GamePageProps) {  const { slug } = await params;
 
   const {
     id,
@@ -66,4 +65,3 @@ const GamePage = async ({ className, params }: GamePageProps) => {
   );
 };
 
-export default GamePage;
