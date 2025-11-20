@@ -10,8 +10,7 @@ export async function getUserGameById(id: number): Promise<TGameUser | null> {
     });
     return result;
   } catch (error) {
-    console.error('Ошибка при получении игры пользователя:', error);
-    throw error;
+    throw new Error(`Ошибка при получении данных об игре: ${(error as Error).message}`);
   } finally {
     await prisma.$disconnect();
   }

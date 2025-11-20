@@ -25,41 +25,44 @@
   --gradient-accent-30-20: linear-gradient(var(--color-accent-30), var(--color-accent-20));
   --gradient-accent-20-10: linear-gradient(var(--color-accent-20), var(--color-accent-10));
 
+  --gradient-accent-10-20: linear-gradient(var(--color-accent-10), var(--color-accent-20));
+
   --gradient-dark-25-10: linear-gradient(var(--color-dark-25), var(--color-dark-10));
   --gradient-dark-50-25: linear-gradient(var(--color-dark-50), var(--color-dark-25));
   --gradient-dark-100-50: linear-gradient(var(--color-dark-100), var(--color-dark-50));
+  --gradient-dark-50-100: linear-gradient(var(--color-dark-50), var(--color-dark-100));
 
     // Font Sizes
-  --font-size-s: 0.875em;      // 14px
-  --font-size-m: 1em;          // 16px
-  --font-size-l: 1.25em;       // 20px
-  --font-size-xl: 1.5em;       // 24px
-  --font-size-xxl: 2em;        // 32px
+  --font-size-s: 0.875rem;      // 14px
+  --font-size-m: 1rem;          // 16px
+  --font-size-l: 1.25rem;       // 20px
+  --font-size-xl: 1.5rem;       // 24px
+  --font-size-xxl: 2rem;        // 32px
 
     // Line Heights
-  --line-height-xxl: 2.375em;  // 38px
-  --line-height-xl: 2em;       // 32px
-  --line-height-l: 1.75em;     // 28px
-  --line-height-m: 1.375em;    // 20px
-  --line-height-s: 1.125em;    // 18px
+  --line-height-xxl: 2.375rem;  // 38px
+  --line-height-xl: 2rem;       // 32px
+  --line-height-l: 1.75rem;     // 28px
+  --line-height-m: 1.375rem;    // 20px
+  --line-height-s: 1.125rem;    // 18px
 
     // Font Weights
   --font-weight-regular: 400;
-  --font-weight-semibold: 500;
+  --font-weight-sremibold: 500;
 
     // Spaces
-  --space-xs: 0.25em;          // 4px
-  --space-s: 0.5em;            // 8px
-  --space-m: 1em;              // 16px
-  --space-l: 1.5em;            // 24px
-  --space-xl: 2em;             // 32px
-  --space-xxl: 3em;            // 48px
-  --space-xxxl: 4em;           // 64px
+  --space-xs: 0.25rem;          // 4px
+  --space-s: 0.5rem;            // 8px
+  --space-m: 1rem;              // 16px
+  --space-l: 1.5rem;            // 24px
+  --space-xl: 2rem;             // 32px
+  --space-xxl: 3rem;            // 48px
+  --space-xxxl: 4rem;           // 64px
 
     // Border Radius
-  --border-radius-m: 1em;      // 16px
-  --border-radius-s: 0.5em;    // 8px
-  --border-radius-xs: 0.25em;  // 4px
+  --border-radius-m: 1rem;      // 16px
+  --border-radius-s: 0.5rem;    // 8px
+  --border-radius-xs: 0.25rem;  // 4px
 
     // Borders
   --border-default: 2px solid var(--color-accent-30);

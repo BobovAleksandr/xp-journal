@@ -17,11 +17,13 @@ const Header = async ({ className }: HeaderProps) => {
 
   return (
     <header className={cn(styles.header, className)}>
-      <Logo />
-      <div className={styles.filters}>
-        <div>TODO filter</div>
-        <SearchInput name="search" placeholder="Поиск" />
-        <LoginBlock user={user}/>
+      <div className={styles.hedaer_wrapper}>
+        <Logo />
+        <div className={styles.filters}>
+          <div>TODO filter</div>
+          <SearchInput name="search" placeholder="Поиск" />
+          <LoginBlock user={user} />
+        </div>
       </div>
     </header>
   );

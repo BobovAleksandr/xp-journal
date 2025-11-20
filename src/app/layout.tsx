@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import "./styles/globals.scss";
 import "./styles/variables.scss";
 import { ReactNode } from "react";
-import Header from '@/widgets/Header/Header'
+import Header from "@/widgets/Header/Header";
+import styles from './layout.module.scss';
 
 const inter = Inter({
   variable: "--inter",
@@ -26,7 +27,7 @@ export default function RootLayout({
     <html lang="ru" className={inter.className}>
       <body>
         <Header />
-        {children}
+        <main className={styles.main}>{children}</main>
       </body>
     </html>
   );

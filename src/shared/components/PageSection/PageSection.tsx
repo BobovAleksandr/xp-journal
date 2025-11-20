@@ -11,7 +11,7 @@ type PageSectionProps = {
 const PageSection = ({ heading, children, className }: PageSectionProps) => {
   return (
     <section className={cn(styles.section, className)}>
-      {heading && <H2>{heading}</H2>}
+      {heading && <H2 className={styles.heading}>{heading}</H2>}
       {children}
     </section>
   );

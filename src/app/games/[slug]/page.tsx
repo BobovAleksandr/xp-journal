@@ -1,6 +1,4 @@
 import getGameBySlug from "@/shared/api/toIgdb/getGameBySlug";
-import styles from "./page.module.scss";
-import cn from "classnames";
 import GameInfo from "@/widgets/GameInfo/GameInfo";
 import GameTitle from "@/widgets/GameTitle/GameTitle";
 import {
@@ -11,15 +9,18 @@ import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
 import calculateDaysToRelease from "@/shared/utils/calculateDaysToRelease";
 import { TCompany } from "@/entities/game/model/types";
 import Expansions from "@/widgets/Expansions/Expansions";
+import { notFound } from "next/navigation";
 
 type GamePageProps = {
-  className?: string;
   params: Promise<{ slug: string }>;
 };
 
-export default async function GamePage({ className, params }: GamePageProps) {
+export default async function GamePage({ params }: GamePageProps) {
   const { slug } = await params;
 
+  const game = await getGameBySlug(slug);
+  if (!game) notFound();
+  
   const {
     id,
     gameType,
@@ -32,13 +33,13 @@ export default async function GamePage({ className, params }: GamePageProps) {
     genres,
     platforms,
     expansions,
-  } = await getGameBySlug(slug);
+  } = game;
 
   const userGame = await getUserGameById(id);
 
   const publishers: TCompany[] = companies.filter((c) => c.publisher).map((c) => c.company);
   const developers: TCompany[] = companies.filter((c) => c.developer).map((c) => c.company);
-  const filteredWebsites = websites.filter((site) => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
+  const filteredWebsites = websites?.filter((site) => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
   const rating = userGame?.rating || 0;
   const status = userGame?.status || ("notCompleted" satisfies TUserGameStatusKey);
   const inCollection = !!userGame;
@@ -48,7 +49,7 @@ export default async function GamePage({ className, params }: GamePageProps) {
   const sortedExpansions = expansions?.sort((a, b) => a.releaseDate! - b.releaseDate!) || [];
 
   return (
-    <main className={cn(styles.main, className)}>
+    <>
       <GameTitle name={name} gameType={gameType} />
       <GameInfo
         genres={genres}
@@ -67,6 +68,6 @@ export default async function GamePage({ className, params }: GamePageProps) {
         daysToRelease={daysToRelease}
       />
       {expansions && <Expansions expansions={sortedExpansions} />}
-    </main>
+    </>
   );
 }

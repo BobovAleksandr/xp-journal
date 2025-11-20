@@ -2,7 +2,7 @@
   object-fit: cover;
   object-position: center center;
   border-radius: var(--border-radius-s);
-  background: linear-gradient(90deg, #c0c0c0 20%, rgb(146, 146, 146) 50%, #c0c0c0 80%);
+  background: linear-gradient(90deg, var(--color-dark-50) 20%, var(--color-dark-25) 50%, var(--color-dark-50) 80%);
   background-size: 200% 100%;
   animation: loading 3s infinite linear;
 }

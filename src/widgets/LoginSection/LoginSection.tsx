@@ -20,12 +20,12 @@ const handleLogin = () => {
 const LoginSection = ({ className }: LoginSectionProps) => {
 
   return (
-    <div className={cn(styles.section, className)}>
+    <section className={cn(styles.section, className)}>
       <H1>Авторизация</H1>
       <Button icon={GoogleIcon} variant="default" onClick={handleLogin}>
         Войти через Google
       </Button>
-    </div>
+    </section>
   );
 };
 

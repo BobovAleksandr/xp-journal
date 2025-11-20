@@ -48,10 +48,10 @@ export type TGameUser = {
 }
 
 // Тип данных игр для главной страницы с IGDB
-export type TIgdbGamesForMain = Pick<TGameIgdb, "id" | "name" | "cover" | "slug">
+export type TIgdbGames = Pick<TGameIgdb, "id" | "name" | "cover" | "slug">
 
 // Тип данных игр для главной страницы для клиента
-export type TClientGamesForMain = Pick<TGameClient, "id" | "name" | "cover" | "slug">
+export type TClientGames = Pick<TGameClient, "id" | "name" | "cover" | "slug">
 
 export type TIgdbCover = {
   id: number;

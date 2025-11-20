@@ -1,11 +1,11 @@
 import styles from "./GamesList.module.scss";
 import cn from "classnames";
 import GameCard from "@/entities/game/ui/GameCard/GameCard";
-import { TClientGamesForMain } from "@/entities/game/model/types";
+import { TClientGames } from "@/entities/game/model/types";
 
 type GamesListProps = {
   className?: string;
-  games: TClientGamesForMain[];
+  games: TClientGames[];
 };
 
 const GamesList = ({ className, games }: GamesListProps) => {

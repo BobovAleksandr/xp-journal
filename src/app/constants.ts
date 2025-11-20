@@ -14,7 +14,8 @@ export const AUTH_ONLY_ROUTES = {
 } as const;
 
 export const ENDPOINTS = {
-  GAMES: 'games/'
+  GAMES: 'games/',
+  COLLETIONS: 'collections/',
 }
 
 // URL сервера IGDB API

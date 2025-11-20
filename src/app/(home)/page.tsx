@@ -12,12 +12,10 @@ export default async function Home() {
   if (!userId) return null;
 
   const userGames = await getUserGames(userId);
-  const userGamesIds = userGames.map((game) => game.id);
-  const mainPageGames = await getGamesForMain(userGamesIds);
 
-  return (
-    <main>
-      <GamesList games={mainPageGames} />
-    </main>
-  );
+  const userGamesIds = userGames.map((game) => game.id);
+
+  const mainPageGames = (await getGamesForMain(userGamesIds)) ?? [];
+
+  return <GamesList games={mainPageGames} />;
 }

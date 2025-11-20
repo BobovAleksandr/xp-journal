@@ -3,7 +3,7 @@
 import { BASE_URL, ENDPOINTS } from "@/app/constants";
 import { TGameClient, TGameIgdb } from "@/entities/game/model/types";
 
-export default async function getGameBySlug(slug: string): Promise<TGameClient> {
+export default async function getGameBySlug(slug: string): Promise<TGameClient | null> {
   const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
     method: 'POST',
     headers: {
@@ -41,14 +41,12 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient> 
   });
 
   if (!response.ok) {
-    throw new Error('Ошибка получения данных об игре:', { cause: `${response.status} ${response.statusText}` })
+    throw new Error('Ошибка получения данных об игре')
   }
 
   const data: TGameIgdb[] = await response.json();
 
-  if (!data[0]) {
-    throw new Error('Игра не найдена');
-  }
+  if (!data[0]) return null
 
   // Мапим и переименовываем поля в camelCase
   const { first_release_date, involved_companies, game_type, cover, screenshots, videos, collections, expansions, ...rest } = data[0];

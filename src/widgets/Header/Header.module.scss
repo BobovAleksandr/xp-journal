@@ -1,10 +1,17 @@
 .header {
+  background: var(--color-dark-100);
+  padding-block: var(--space-l);
+}
+
+.hedaer_wrapper {
   margin-inline: auto;
-  margin-block: var(--space-xl) var(--space-xxl);
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: var(--space-l);
+  max-width: var(--global-max-width);
+  margin: 0 auto;
+  padding-inline: var(--page-inline-padding);
 }
 
 .filters {

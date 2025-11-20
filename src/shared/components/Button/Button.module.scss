@@ -11,6 +11,7 @@
   font-family: inherit;
   font-size: var(--font-size-m);
   @include transition;
+  justify-content: center;
 
   &:hover {
     cursor: pointer;
@@ -37,7 +38,7 @@
   background-color: transparent;
 
   &:hover {
-    background-color: var(--color-accent-20);
+    background-color: var(--color-accent-10);
     @include transition;
   }
 
