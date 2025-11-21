@@ -1,0 +1,11 @@
+.game_controls {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-l);
+}
+
+.game_controls_actions {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-l);
+}

@@ -9,9 +9,9 @@ import TwitchIcon from './../ui/GameSiteLink/assets/icons/twitch.svg'
 export const USER_GAME_STATUSES = {
   notCompleted: 'Не пройдена',
   inProgress: 'Не закончена',
+  toPlay: 'Хочу пройти',
   completed: 'Пройдена',
   platinum: 'Платина',
-  toPlay: 'Хочу пройти'
 } as const;
 
 export type TUserGameStatusKey = keyof typeof USER_GAME_STATUSES
@@ -46,3 +46,7 @@ export const WEBSITE_TYPE = {
 } as const;
 
 export type TWebsiteType = keyof typeof WEBSITE_TYPE;
+
+// Максимально возможный рейтинг для игр 
+// Влияет на количество отображаемых звзд на странице игры
+export const MAXIMUM_GAME_RATING = 10;

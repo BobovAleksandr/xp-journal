@@ -9,6 +9,7 @@ type ButtonProps = {
   children: React.ReactNode;
   className?: string;
   variant: ButtonVariant;
+  type?: "button" | "submit" | "reset";
   as?: "button" | "internalLink" | "externalLink";
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
   href?: string;
@@ -21,6 +22,7 @@ const Button = ({
   icon,
   as = "button",
   href,
+  type = "button",
   ...rest
 }: ButtonProps) => {
   const Icon = icon;
@@ -56,7 +58,7 @@ const Button = ({
   }
 
   return (
-    <button className={buttonClassName} {...rest}>
+    <button className={buttonClassName} type={type} {...rest}>
       <ButtonIcon />
       {children}
     </button>

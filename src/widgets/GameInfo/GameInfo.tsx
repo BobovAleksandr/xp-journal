@@ -13,8 +13,12 @@ import {
 import GameSiteLinks from "../GameSiteLinks/GameSiteLinks";
 import { TUserGameStatusKey } from "@/entities/game/model/constants";
 import GameControls from "../GameControls/GameControls";
+import { cookies } from "next/headers";
+import getCurrentSession from "@/features/Auth/getCurrentSession";
+import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
 
 type GameInfoProps = {
+  id: number;
   className?: string;
   cover?: TClientCover;
   name: string;
@@ -23,16 +27,13 @@ type GameInfoProps = {
   publishers?: TCompany[];
   collection?: TCollection;
   websites?: TWebsite[];
-  rating: number;
-  status: TUserGameStatusKey;
-  inCollection: boolean;
   isReleased: boolean;
   daysToRelease?: number;
   platforms: TPltaform[];
   genres: TGenre[];
 };
 
-const GameInfo = ({
+const GameInfo = async ({
   cover,
   name,
   releaseDate,
@@ -41,14 +42,23 @@ const GameInfo = ({
   collection,
   className,
   websites,
-  rating,
-  status,
-  inCollection,
+  id,
   isReleased,
   daysToRelease,
   platforms,
   genres,
 }: GameInfoProps) => {
+  const currentCookies = (await cookies()).toString();
+  const session = await getCurrentSession(currentCookies);
+  const userId = session?.user.id;
+
+  const userGame = userId ? await getUserGameById(userId, id) : null;
+
+  const rating = userGame?.rating || 0;
+  const status =
+    userGame?.status || ("notCompleted" satisfies TUserGameStatusKey);
+  const inCollection = !!userGame;
+
   return (
     <section className={cn(styles.game_content, className)}>
       <GameCover cover={cover?.imageId} name={name} variant="gamePage" />
@@ -69,9 +79,14 @@ const GameInfo = ({
             rating={rating}
             status={status}
             inCollection={inCollection}
+            userId={userId}
+            gameId={id}
           />
           {websites && websites.length > 0 && (
-            <GameSiteLinks gameSites={websites} />
+            <GameSiteLinks
+              gameSites={websites}
+              className={styles.game_websites}
+            />
           )}
         </div>
       </div>

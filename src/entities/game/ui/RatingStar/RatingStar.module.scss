@@ -1,8 +1,8 @@
 @use '@/app/styles/mixins.scss' as *;
 
-.star {
+.star_button {
   
-  padding: var(--space-s) var(--space-xs);
+  padding: 3px var(--space-xs);
   &:hover .star_icon {
     color: var(--color-accent-40);
     @include transition(color);
@@ -17,13 +17,10 @@
     color: var(--color-accent-20);
     @include transition(color);
   }
-
-}
-
-.star_button {
   &:hover {
     cursor: pointer;
   }
+
 }
 
 .star_icon {

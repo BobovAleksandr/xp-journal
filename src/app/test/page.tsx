@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import PageNotFound from '@/widgets/PageNotFound/PageNotFound';
+import StatusSelect from "@/entities/game/ui/StatusSelect/StatusSelect";
 
 const TestPage = () => {
   return (
-    <PageNotFound />
+    <StatusSelect />
   );
 };
 

@@ -4,9 +4,9 @@ import { useState } from "react";
 import styles from "./GameRating.module.scss";
 import cn from "classnames";
 import RatingStar from "../RatingStar/RatingStar";
-import { MAXIMUM_GAME_RATING } from "@/app/constants";
 import IconButton from "@/shared/components/IconButton/IconButton";
 import CrossIcon from "@/shared/assets/xmark.svg";
+import { MAXIMUM_GAME_RATING } from "../../model/constants";
 
 type GameRatingProps = {
   className?: string;
@@ -19,8 +19,8 @@ const GameRating = ({ className, rating }: GameRatingProps) => {
   return (
     <div className={styles.stars_group}>
       <input
-        name="ating"
-        min={MAXIMUM_GAME_RATING - MAXIMUM_GAME_RATING} // 0
+        name="rating"
+        min={0}
         max={MAXIMUM_GAME_RATING}
         type="number"
         readOnly
@@ -29,26 +29,25 @@ const GameRating = ({ className, rating }: GameRatingProps) => {
       />
       <ul className={cn(styles.stars_list, className)}>
         {Array.from({ length: MAXIMUM_GAME_RATING }, (_, index) => (
-          <RatingStar
-            key={index}
-            id={index + 1}
-            onCLick={() => {
-              setRatingState(index + 1);
-            }}
-            type={ratingState >= index + 1 ? "filled" : "empty"}
-          />
+          <li key={index}>
+            <RatingStar
+              id={index + 1}
+              onCLick={() => setRatingState(index + 1)}
+              type={ratingState >= index + 1 ? "filled" : "empty"}
+            />
+          </li>
         ))}
       </ul>
-      {ratingState > 0 && (
-        <IconButton
-          icon={CrossIcon}
-          variant="large"
-          title="Обнулить рейтинг"
-          onClick={() => {
-            setRatingState(0);
-          }}
-        />
-      )}
+      <IconButton
+        className={cn(styles.stars_reset, {
+          [styles.disabled]: ratingState === 0, // Если рейтинг 0 - скрываем кнопку визуально
+        })}
+        type="submit"
+        icon={CrossIcon}
+        variant="large"
+        title="Обнулить рейтинг"
+        onClick={() => setRatingState(0)}
+      />
     </div>
   );
 };

@@ -20,8 +20,8 @@ const Header = async ({ className }: HeaderProps) => {
       <div className={styles.hedaer_wrapper}>
         <Logo />
         <div className={styles.filters}>
-          <div>TODO filter</div>
-          <SearchInput name="search" placeholder="Поиск" />
+          {/* <div>TODO filter</div> */}
+          {/* <SearchInput name="search" placeholder="Поиск" /> */}
           <LoginBlock user={user} />
         </div>
       </div>

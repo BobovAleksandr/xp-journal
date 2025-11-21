@@ -1,4 +1,4 @@
-import { ComponentType, HTMLAttributes, SVGProps } from "react";
+import { ButtonHTMLAttributes, ComponentType, SVGProps } from "react";
 import styles from "./IconButton.module.scss";
 import cn from "classnames";
 
@@ -8,7 +8,7 @@ type IconButtonProps = {
   className?: string;
   variant: ButtonVariant;
   icon: ComponentType<SVGProps<SVGSVGElement>>;
-} & HTMLAttributes<HTMLButtonElement>;
+} & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const largeIconSize = "1.5em";
 const smallIconSize = "1em";
@@ -23,7 +23,7 @@ const IconButton = ({
   const Icon = icon;
 
   return (
-    <button className={cn(styles.button, styles[variant], className)} {...props}>
+    <button type={props.type || "button"} className={cn(styles.button, styles[variant], className)} {...props}>
       <Icon width={iconSize} height={iconSize} className={styles.icon}/>
     </button>
   );

@@ -8,7 +8,7 @@ type MenuItemProps = {
   onClick?: () => void;
   href?: string;
   children: string;
-  icon: ComponentType<SVGProps<SVGSVGElement>>;
+  icon?: ComponentType<SVGProps<SVGSVGElement>>;
   as: "button" | "link";
 };
 
