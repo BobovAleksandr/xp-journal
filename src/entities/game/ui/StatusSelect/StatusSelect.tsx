@@ -5,9 +5,10 @@ import completedIcon from "@/shared/assets/check-shape.svg";
 import platinumIcon from "@/shared/assets/medal.svg";
 import toPlayIcon from "@/shared/assets/bookmark.svg";
 import { TUserGameStatusKey, USER_GAME_STATUSES } from "../../model/constants";
+import { memo } from "react";
 
 type StatusSelectProps = {
-  status: TUserGameStatusKey;
+  status?: TUserGameStatusKey;
   className?: string;
 };
 
@@ -30,7 +31,7 @@ const statusSelectItems = statusKeys.reduce((acc, key) => {
   return acc;
 }, {} as TSelectConfig<TUserGameStatusKey>);
 
-const StatusSelect = ({ status, className }: StatusSelectProps) => {
+const StatusSelect = ({ status = "notCompleted", className }: StatusSelectProps) => {
   return (
     <Select<TUserGameStatusKey>
       className={className}
@@ -41,4 +42,4 @@ const StatusSelect = ({ status, className }: StatusSelectProps) => {
   );
 };
 
-export default StatusSelect;
+export default memo(StatusSelect);

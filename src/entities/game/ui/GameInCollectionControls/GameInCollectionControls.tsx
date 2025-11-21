@@ -3,14 +3,14 @@
 import Button from "@/shared/components/Button/Button";
 import addIcon from "@/shared/assets/heart.svg";
 import removeIcon from "@/shared/assets/heart-crack.svg";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 type GameInCollectionControlsProps = {
-  inCollection: boolean;
+  inCollection?: boolean;
 };
 
 const GameInCollectionControls = ({
-  inCollection,
+  inCollection = false,
 }: GameInCollectionControlsProps) => {
   const [inCollectionState, setInCollectionState] = useState(inCollection);
 
@@ -46,4 +46,4 @@ const GameInCollectionControls = ({
   );
 };
 
-export default GameInCollectionControls;
+export default memo(GameInCollectionControls);

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { memo, useState } from "react";
 import styles from "./GameRating.module.scss";
 import cn from "classnames";
 import RatingStar from "../RatingStar/RatingStar";
@@ -52,4 +52,4 @@ const GameRating = ({ className, rating }: GameRatingProps) => {
   );
 };
 
-export default GameRating;
+export default memo(GameRating);

@@ -1,32 +1,28 @@
-import { TUserGameStatusKey } from "@/entities/game/model/constants";
 import { prisma } from "@/shared/lib/prisma";
+import { TUserGameStatusKey } from "@/entities/game/model/constants";
 
-export default async function addOrUpdateUserGame(
+export async function addUserGame(
   userId: string,
-  gameId: string,
-  rating: string,
-  status: TUserGameStatusKey,
+  gameId: string
 ) {
   try {
-    await prisma.userGame.upsert({
-      where: {
-        userId_id: {
-          userId,
-          id: Number(gameId),
-        },
-      },
-      create: {
+    const userGame = await prisma.userGame.create({
+      data: {
         userId,
         id: Number(gameId),
-        rating: Number(rating),
-        status,
+        rating: 0,
+        status: "notCompleted" as TUserGameStatusKey,
       },
-      update: {
-        rating: Number(rating),
-        status,
+      select: {
+        rating: true,
+        status: true,
       },
     });
+
+    return userGame;
   } catch (error) {
-    throw new Error(`Не удалось сохранить игру: ${(error as Error).message}`);
+    throw new Error(
+      `Не удалось добавить игру: ${(error as Error).message}`
+    );
   }
 }
