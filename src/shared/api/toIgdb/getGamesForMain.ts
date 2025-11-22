@@ -16,6 +16,7 @@ export default async function getGamesForMain(ids: number[]): Promise<TClientGam
       body: `
         fields id, slug, name, cover.image_id;
         where id = (${ids.join(',')});
+        limit 500;
       `,
     });
 

@@ -8,6 +8,7 @@ import calculateDaysToRelease from "@/shared/utils/calculateDaysToRelease";
 import { TCompany } from "@/entities/game/model/types";
 import Expansions from "@/widgets/Expansions/Expansions";
 import { notFound } from "next/navigation";
+import Screenshots from "@/widgets/Screenshots/Screenshots";
 
 type GamePageProps = {
   params: Promise<{ slug: string }>;
@@ -31,6 +32,7 @@ export default async function GamePage({ params }: GamePageProps) {
     genres,
     platforms,
     expansions,
+    screenshots
   } = game;
 
   const publishers: TCompany[] = companies ? companies.filter((c) => c.publisher).map((c) => c.company) : [];
@@ -45,6 +47,7 @@ export default async function GamePage({ params }: GamePageProps) {
   return (
     <>
       <GameTitle name={name} gameType={gameType} />
+      
       <GameInfo
         genres={genres}
         platforms={platforms}
@@ -59,7 +62,15 @@ export default async function GamePage({ params }: GamePageProps) {
         isReleased={isReleased}
         daysToRelease={daysToRelease}
       />
-      {expansions && <Expansions expansions={sortedExpansions} />}
+
+      {expansions && 
+        <Expansions expansions={sortedExpansions}
+      />}
+
+      {screenshots && screenshots.length > 0 && 
+        <Screenshots screenshots={screenshots} gameName={name}
+      />}
+
     </>
   );
 }

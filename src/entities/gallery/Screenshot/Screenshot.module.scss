@@ -1,0 +1,18 @@
+.screenshot {
+  border-radius: var(--border-radius-s);
+  background: linear-gradient(90deg, var(--color-dark-50) 20%, var(--color-dark-25) 50%, var(--color-dark-50) 80%);
+  background-size: 200% 100%;
+  animation: loading 3s infinite linear;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
