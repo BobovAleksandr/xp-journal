@@ -1,6 +1,6 @@
 "use client";
 
-import { memo, useState } from "react";
+import { memo } from "react";
 import styles from "./GameRating.module.scss";
 import cn from "classnames";
 import RatingStar from "../RatingStar/RatingStar";
