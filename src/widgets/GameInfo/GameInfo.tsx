@@ -74,14 +74,16 @@ const GameInfo = async ({
           genres={genres}
         />
         <div className={styles.game_interactives}>
-          <GameControls
-            isReleased={isReleased}
-            rating={rating}
-            status={status}
-            inCollection={inCollection}
-            userId={userId}
-            gameId={id}
-          />
+          {userId && (
+            <GameControls
+              isReleased={isReleased}
+              rating={rating}
+              status={status}
+              inCollection={inCollection}
+              userId={userId}
+              gameId={id}
+            />
+          )}
           {websites && websites.length > 0 && (
             <GameSiteLinks
               gameSites={websites}

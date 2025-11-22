@@ -8,20 +8,20 @@ import StarIconFilled from "./assets/icons/star-fill.svg";
 type RatingStarProps = {
   type: "empty" | "filled";
   className?: string;
-  onCLick: () => void;
+  onClick: () => void;
   id: number;
 };
 
 const RatingStar = ({
   type = "empty",
-  onCLick,
+  onClick,
   className,
   id,
 }: RatingStarProps) => {
   const Icon = type === "empty" ? StarIconEmpty : StarIconFilled;
   return (
     <button
-      onClick={onCLick}
+      onClick={onClick}
       title={String(id)}
       className={cn(styles.star_button, className)}
     >

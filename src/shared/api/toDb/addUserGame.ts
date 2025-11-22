@@ -1,3 +1,5 @@
+"use server";
+
 import { prisma } from "@/shared/lib/prisma";
 import { TUserGameStatusKey } from "@/entities/game/model/constants";
 

@@ -2,13 +2,15 @@
 
 import styles from "./GameControls.module.scss";
 import cn from "classnames";
-import GameRating from "@/entities/game/ui/GameRating/GameRating";
-import Form from "next/form";
 import { TUserGameStatusKey } from "@/entities/game/model/constants";
-import gameStatusAction from "./actions/gameStatusAction";
 import StatusSelect from "@/entities/game/ui/StatusSelect/StatusSelect";
 import GameInCollectionControls from "@/entities/game/ui/GameInCollectionControls/GameInCollectionControls";
-import { useActionState } from "react";
+import { useReducer } from "react";
+import { addUserGame } from "@/shared/api/toDb/addUserGame";
+import deleteUserGame from "@/shared/api/toDb/deleteUserGame";
+import { updateUserGame } from "@/shared/api/toDb/updateUserGame";
+import gameReducer, { TGamePayload } from "./hooks/gameReducer";
+import GameRating from "@/entities/game/ui/GameRating/GameRating";
 
 type GameControlsProps = {
   className?: string;
@@ -21,13 +23,10 @@ type GameControlsProps = {
   gameId?: number;
 };
 
-export type TFormState = {
-  fields?: {
-    rating: number;
-    inCollection: boolean;
-    status: TUserGameStatusKey;
-  };
-  success: boolean;
+export type TGameState = {
+  inCollection: boolean;
+  status: TUserGameStatusKey;
+  rating: number;
   error?: string;
 };
 
@@ -40,41 +39,63 @@ const GameControls = ({
   userId,
   gameId,
 }: GameControlsProps) => {
-  const formInitialState: TFormState = {
-    fields: {
-      rating,
-      inCollection,
-      status,
-    },
-    success: false,
+  const initialGameState: TGameState = {
+    inCollection,
+    status,
+    rating,
+    error: "",
   };
 
-  const [formState, fomAction] = useActionState(
-    gameStatusAction,
-    formInitialState
-  );
+  const [gameState, dispatch] = useReducer(gameReducer, initialGameState);
 
-  const addedInCollection = isReleased && formState.fields?.inCollection;
-  // TODO попап с ошибкой если error есть
+  const addedInCollection = isReleased && gameState.inCollection;
+
+  const handleUpdateGame = async (action: TGamePayload) => {
+    const was = gameState.inCollection;
+
+    // локальный оптимистичный апдейт
+    dispatch(action);
+
+    if (action.action === "add" && !was) {
+      const added = await addUserGame(userId!, String(gameId));
+      dispatch({ action: "update", payload: added }); // или возврат
+    }
+
+    if (action.action === "delete" && was) {
+      const deleted = await deleteUserGame(userId!, String(gameId));
+      if (!deleted) dispatch({ action: "add" }); // откат
+    }
+
+    if (action.action === "update") {
+      const updated = await updateUserGame(
+        userId!,
+        String(gameId),
+        action.payload?.rating ?? gameState.rating,
+        action.payload?.status ?? gameState.status
+      );
+      dispatch({
+        action: "update",
+        payload: updated,
+      });
+    }
+  };
 
   return (
-    <Form
-      action={fomAction}
-      onChange={(e) => e.currentTarget.requestSubmit()}
-      className={cn(styles.game_controls, className)}
-    >
-      {addedInCollection && <GameRating rating={formState.fields?.rating} />}
-      <input type="text" name="userId" value={userId} hidden readOnly />
-      <input type="text" name="gameId" value={gameId} hidden readOnly />
+    <section className={cn(styles.game_controls, className)}>
+      <span>{gameState.error}</span>
+      {addedInCollection && (
+        <GameRating rating={gameState.rating} action={handleUpdateGame} />
+      )}
       <div className={styles.game_controls_actions}>
         <GameInCollectionControls
-          inCollection={formState.fields?.inCollection}
+          inCollection={gameState.inCollection}
+          action={handleUpdateGame}
         />
-        {addedInCollection && (
-          <StatusSelect status={formState.fields?.status} />
+        {gameState.inCollection && (
+          <StatusSelect status={gameState.status} action={handleUpdateGame} isReleased={isReleased}/>
         )}
       </div>
-    </Form>
+    </section>
   );
 };
 

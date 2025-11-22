@@ -14,6 +14,11 @@ export const USER_GAME_STATUSES = {
   platinum: 'Платина',
 } as const;
 
+export const BEFORE_RELEASE_STATUSES: TUserGameStatusKey[] = [
+  "notCompleted",
+  "toPlay",
+];
+
 export type TUserGameStatusKey = keyof typeof USER_GAME_STATUSES
 
 export type TUserGameStatusValue = typeof USER_GAME_STATUSES[TUserGameStatusKey]

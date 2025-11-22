@@ -3,46 +3,39 @@
 import Button from "@/shared/components/Button/Button";
 import addIcon from "@/shared/assets/heart.svg";
 import removeIcon from "@/shared/assets/heart-crack.svg";
-import { memo, useState } from "react";
+import { memo } from "react";
+import { TGamePayload } from "@/widgets/GameControls/hooks/gameReducer";
 
 type GameInCollectionControlsProps = {
   inCollection?: boolean;
+  action: ({ action }: TGamePayload) => void;
 };
 
 const GameInCollectionControls = ({
-  inCollection = false,
+  action,
+  inCollection
 }: GameInCollectionControlsProps) => {
-  const [inCollectionState, setInCollectionState] = useState(inCollection);
 
   return (
-    <div>
-      <input
-        type="checkbox"
-        checked={inCollectionState}
-        name="inCollection"
-        hidden
-        readOnly
-      />
-      {inCollectionState ? (
+    <>
+      {inCollection ? (
         <Button
           variant="default"
-          type="submit"
           icon={removeIcon}
-          onClick={() => setInCollectionState(false)}
+          onClick={() => action({ action: "delete" })}
         >
           Убрать из коллекции
         </Button>
       ) : (
         <Button
           variant="light"
-          type="submit"
           icon={addIcon}
-          onClick={() => setInCollectionState(true)}
+          onClick={() => action({ action: "add" })}
         >
           Добавить в коллекцию
         </Button>
       )}
-    </div>
+    </>
   );
 };
 

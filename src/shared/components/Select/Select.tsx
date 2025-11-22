@@ -16,22 +16,22 @@ type SelectProps<Tkey extends string> = {
   className?: string;
   defaultValue?: Tkey;
   selectOptions: TSelectConfig<Tkey>;
-  name: string;
+  onChange: (value: Tkey) => void;
 };
 
 
-const Select = <Tkey extends string>({ selectOptions, defaultValue, name, className }: SelectProps<Tkey>) => {
-  const [currentValue, setCurrentValue] = useState<Tkey | undefined>(defaultValue);
+const Select = <Tkey extends string>({ selectOptions, defaultValue, onChange, className }: SelectProps<Tkey>) => {
+  const [currentValue, setCurrentValue] = useState<Tkey | null>(defaultValue ?? null);
   
   const optionsValues = Object.keys(selectOptions) as Tkey[];
 
   const handleStatusChange = (status: Tkey) => {
     setCurrentValue(status);
+    onChange?.(status);
   };
 
   return (
     <>
-      <input type="text" name={name} value={currentValue} hidden readOnly/>
       <Dropdown
         trigger={
           <Button
