@@ -1,14 +1,14 @@
 import styles from './MenuContainer.module.scss';
 import cn from 'classnames';
 
-type DropdownMenuProps = {
+type MenuContainerProps = {
   children?: React.ReactNode;
   className?: string;
-};
+} & React.HTMLAttributes<HTMLUListElement>;
 
-const MenuContainer = ({ children, className }: DropdownMenuProps) => {
+const MenuContainer = ({ children, className, ...props }: MenuContainerProps ) => {
   return (
-    <ul className={cn(styles.menu, className)}>
+    <ul className={cn(styles.menu, className)} {...props}>
       {children}
     </ul>
   );

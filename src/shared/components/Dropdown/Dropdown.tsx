@@ -31,7 +31,11 @@ const Dropdown = ({ children, trigger, className }: DropdownProps) => {
       <div onClick={() => setOpen((open) => !open)} className={styles.trigger}>
         {trigger}
       </div>
-      {open && <Menu className={styles.dropdown_menu}>{children}</Menu>}
+      {open && (
+        <Menu className={styles.dropdown_menu} onClick={() => setOpen(false)}>
+          {children}
+        </Menu>
+      )}
     </div>
   );
 };

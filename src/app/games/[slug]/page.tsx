@@ -33,8 +33,8 @@ export default async function GamePage({ params }: GamePageProps) {
     expansions,
   } = game;
 
-  const publishers: TCompany[] = companies.filter((c) => c.publisher).map((c) => c.company);
-  const developers: TCompany[] = companies.filter((c) => c.developer).map((c) => c.company);
+  const publishers: TCompany[] = companies ? companies.filter((c) => c.publisher).map((c) => c.company) : [];
+  const developers: TCompany[] = companies ? companies.filter((c) => c.developer).map((c) => c.company) : [];
   const filteredWebsites = websites?.filter((site) => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
 
   const releaseStatus = releaseDate ? calculateDaysToRelease(releaseDate) : null;

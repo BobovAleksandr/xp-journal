@@ -46,6 +46,9 @@ const GameFacts = ({
     variant: "internal" as const,
   }));
 
+  const shouldShowDevelopers = developers && developers.length > 0 && developersLinks && developersLinks.length > 0;
+  const shouldShowPublishers = publishers && publishers.length > 0 && publishersLinks && publishersLinks.length > 0;
+
   const genresStringArray = genres?.map(genre => genre.name)
   const platformsStringArray = platforms?.map(platform => platform.name)
 
@@ -67,7 +70,7 @@ const GameFacts = ({
           />
         )}
 
-        {developers && developersLinks && (
+        {shouldShowDevelopers && (
           <GameFact
             variant="link"
             title={developersLinks.length > 1 ? "Разработчики" : "Разработчик"}
@@ -75,7 +78,7 @@ const GameFacts = ({
           />
         )}
 
-        {publishers && publishersLinks && (
+        {shouldShowPublishers && (
           <GameFact
             variant="link"
             title={publishersLinks.length > 1 ? "Издатели" : "Издатель"}

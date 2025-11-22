@@ -2,14 +2,14 @@
 
 .input {
   position: relative;
-  border: 2px solid var(--color-gray-60);
+  border: 2px solid var(--color-accent-10);
   border-radius: var(--border-radius-s);
   padding-inline: calc(var(--space-m) + 1em + var(--space-s)) calc(var(--space-s) - 2px);
   padding-inline-start: calc(var(--space-m) + 1em + var(--space-s));
-  padding-block: calc(var(--space-s) - 2px);
+  padding-block: var(--space-s);
   color: var(--color-light-25);
   font-family: inherit;
-  background-color: transparent;
+  background-color: var(--color-dark-10);
   background-image: url('/images/icons/search.svg');
   background-repeat: no-repeat;
   background-position: var(--space-m) center;
@@ -17,7 +17,7 @@
   @include transition(border-color);
 
   &:focus {
-    border-color: var(--color-light-25);
+    border-color: var(--color-accent-20);
     outline: none;
     @include transition(border-color);
   }
@@ -39,5 +39,8 @@
       @include transition(opacity);
     }
   }
+}
 
+.menu_container {
+  max-width: 500px;
 }
