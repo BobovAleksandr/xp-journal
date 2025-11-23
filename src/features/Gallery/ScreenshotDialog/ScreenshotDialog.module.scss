@@ -1,0 +1,45 @@
+.dialog {
+  border: none;
+  padding: 0;
+  padding: var(--space-xs);
+  background: transparent;
+  user-select: none;
+
+  &::backdrop {
+    background: rgba(0,0,0,.7);
+  }
+}
+
+.dialog_header {
+  margin-block-end: var(--space-s);
+}
+
+.dialog_close {
+  margin-inline-start: auto;
+  &:focus-visible {
+    outline: none;
+  }
+}
+
+.dialog_image_container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.dialog_image {
+  border-radius: var(--border-radius-s);
+  background: linear-gradient(90deg, var(--color-dark-50) 20%, var(--color-dark-25) 50%, var(--color-dark-50) 80%);
+  background-size: 200% 100%;
+  animation: loading 3s infinite linear;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
