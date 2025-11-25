@@ -1,4 +1,4 @@
-import { TClientGames, TIgdbGames } from "../game/model/types";
+import { TClientGame, TIgdbGames } from "../game/model/types";
 
 export type TIgdbCollection = {
   name: string;
@@ -6,5 +6,5 @@ export type TIgdbCollection = {
 }
 
 export type TClientCollection = Omit<TIgdbCollection, "games"> & {
-  games: TClientGames[];
+  games: TClientGame[];
 }

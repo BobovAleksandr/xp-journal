@@ -1,6 +1,7 @@
 @use '@/app/styles/mixins' as *;
 
 .button {
+  display: inline-block;
   border: none;
   color: var(--color-light-25);
   background-color: transparent;

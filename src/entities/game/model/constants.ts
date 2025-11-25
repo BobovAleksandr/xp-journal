@@ -5,19 +5,41 @@ import WebIcon from './../ui/GameSiteLink/assets/icons/web.svg'
 import DiscordIcon from './../ui/GameSiteLink/assets/icons/discord.svg'
 import YoutubeIcon from './../ui/GameSiteLink/assets/icons/youtube.svg'
 import TwitchIcon from './../ui/GameSiteLink/assets/icons/twitch.svg'
+import notCompletedIcon from "@/shared/assets/xmark-shape.svg";
+import inProgressIcon from "@/shared/assets/pause.svg";
+import completedIcon from "@/shared/assets/check-shape.svg";
+import platinumIcon from "@/shared/assets/medal.svg";
+import toPlayIcon from "@/shared/assets/bookmark.svg";
 
 export const USER_GAME_STATUSES = {
-  notCompleted: 'Не пройдена',
-  inProgress: 'Не закончена',
-  toPlay: 'Хочу пройти',
-  completed: 'Пройдена',
-  platinum: 'Платина',
+  notCompleted: {
+    value: 'Не пройдена',
+    icon: notCompletedIcon,
+  },
+  inProgress: {
+    value: 'Не закончена',
+    icon: inProgressIcon,
+  },
+  toPlay: {
+    value: 'Хочу пройти',
+    icon: completedIcon,
+  },
+  completed: {
+    value: 'Пройдена',
+    icon: platinumIcon,
+  },
+  platinum: {
+    value: 'Платина',
+    icon: toPlayIcon,
+  },
 } as const;
 
 export const BEFORE_RELEASE_STATUSES: TUserGameStatusKey[] = [
   "notCompleted",
   "toPlay",
 ];
+
+export const STATUS_KEYS = Object.keys(USER_GAME_STATUSES) as TUserGameStatusKey[]
 
 export type TUserGameStatusKey = keyof typeof USER_GAME_STATUSES
 

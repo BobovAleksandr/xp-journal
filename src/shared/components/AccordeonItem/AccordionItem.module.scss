@@ -1,0 +1,55 @@
+@use '@/app/styles/mixins.scss' as *;
+
+.accordion_item {
+  display: grid;
+  gap: var(--space-m);
+  grid-template-rows: 1fr 0fr;
+  @include transition(grid-template-rows);
+  
+  &__open {
+    grid-template-rows: 1fr 1fr;
+    @include transition(grid-template-rows);
+
+    & .accordion_icon__chevron {
+      @include transition(transform);
+      transform: rotate(180deg)
+    }
+  }
+}
+
+.accordion_header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: var(--color-dark-50);
+  padding: var(--space-s) var(--space-m);
+  border-radius: var(--border-radius-s);
+  @include transition(background-color);
+  font-size: var(--font-size-l);
+
+  &:hover {
+    @include transition(background-color);
+    background-color: var(--color-dark-100);
+    cursor: pointer;
+  }
+}
+
+.accordion_heading {
+  font-weight: var(--font-weight-regular);
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-m);
+  flex: 1 0 auto;
+  text-wrap: nowrap;
+}
+
+.accordion_icon {
+  @include transition(transform);
+  flex: 0 0 1em;
+}
+
+.accordion_content {
+  overflow: hidden;
+}

@@ -1,11 +1,8 @@
 import Select, { TSelectConfig } from "@/shared/components/Select/Select";
-import notCompletedIcon from "@/shared/assets/xmark-shape.svg";
-import inProgressIcon from "@/shared/assets/pause.svg";
-import completedIcon from "@/shared/assets/check-shape.svg";
-import platinumIcon from "@/shared/assets/medal.svg";
-import toPlayIcon from "@/shared/assets/bookmark.svg";
+
 import {
   BEFORE_RELEASE_STATUSES,
+  STATUS_KEYS,
   TUserGameStatusKey,
   USER_GAME_STATUSES,
 } from "../../model/constants";
@@ -19,21 +16,12 @@ type StatusSelectProps = {
   isReleased: boolean;
 };
 
-const statusKeys = Object.keys(USER_GAME_STATUSES) as TUserGameStatusKey[];
-
-const iconsMap = {
-  notCompleted: notCompletedIcon,
-  inProgress: inProgressIcon,
-  completed: completedIcon,
-  platinum: platinumIcon,
-  toPlay: toPlayIcon,
-} as const;
 
 // Создаём объект-конфиг для статусов игр со значениями и иконками
-const statusSelectItems = statusKeys.reduce((acc, key) => {
+const statusSelectItems = STATUS_KEYS.reduce((acc, key) => {
   acc[key] = {
-    title: USER_GAME_STATUSES[key],
-    icon: iconsMap[key],
+    title: USER_GAME_STATUSES[key].value,
+    icon: USER_GAME_STATUSES[key].icon,
   };
   return acc;
 }, {} as TSelectConfig<TUserGameStatusKey>);

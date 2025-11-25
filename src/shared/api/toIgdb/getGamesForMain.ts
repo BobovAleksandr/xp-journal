@@ -1,9 +1,9 @@
 'use server';
 
 import { BASE_URL, ENDPOINTS } from "@/app/constants";
-import { TClientGames, TIgdbGames } from "@/entities/game/model/types";
+import { TClientGame, TIgdbGames } from "@/entities/game/model/types";
 
-export default async function getGamesForMain(ids: number[]): Promise<TClientGames[] | null> {
+export default async function getGamesForMain(ids: number[]): Promise<TClientGame[] | null> {
   try {
     if (ids.length === 0) return [];
 

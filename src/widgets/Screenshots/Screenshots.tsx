@@ -5,19 +5,31 @@ import styles from "./Screenshots.module.scss";
 import { TClientScreenshot } from "@/entities/game/model/types";
 import Screenshot from "@/features/Gallery/Screenshot/Screenshot";
 import ScreenshotDialog from "@/features/Gallery/ScreenshotDialog/ScreenshotDialog";
-import { useState } from "react";
+import { memo, useCallback, useState } from "react";
 
 type ScreenshotsProps = {
   screenshots: TClientScreenshot[];
   gameName: string;
 };
 
-const Screenshots = ({ screenshots, gameName }: ScreenshotsProps) => {
+const Screenshots = memo(({ screenshots, gameName }: ScreenshotsProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
-  const handleChangeScreenshot = (index: number) => {
+  const handleChangeScreenshot = useCallback((index: number) => {
     setActiveImageIndex(index);
-  };
+  }, []);
+
+  const onNext = useCallback(() => {
+    setActiveImageIndex((prev) =>
+      prev === null ? 0 : (prev + 1) % screenshots.length
+    );
+  }, [screenshots.length]);
+
+  const onPrev = useCallback(() => {
+    setActiveImageIndex((prev) =>
+      prev === null ? 0 : (prev - 1 + screenshots.length) % screenshots.length
+    );
+  }, [screenshots.length]);
 
   const isOpen = activeImageIndex !== null;
 
@@ -43,21 +55,11 @@ const Screenshots = ({ screenshots, gameName }: ScreenshotsProps) => {
         imageId={isOpen ? screenshots[activeImageIndex].imageId : null}
         gameName={gameName}
         onClose={() => setActiveImageIndex(null)}
-        onNext={() =>
-          setActiveImageIndex((prev) =>
-            prev === null ? 0 : (prev + 1) % screenshots.length
-          )
-        }
-        onPrev={() =>
-          setActiveImageIndex((prev) =>
-            prev === null
-              ? 0
-              : (prev - 1 + screenshots.length) % screenshots.length
-          )
-        }
+        onNext={onNext}
+        onPrev={onPrev}
       />
     </>
   );
-};
+});
 
 export default Screenshots;

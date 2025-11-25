@@ -1,4 +1,4 @@
-import { HTMLAttributes } from "react";
+import { HTMLAttributes, ReactNode } from "react";
 import cn from "classnames";
 import styles from "./Typography.module.scss";
 
@@ -14,7 +14,7 @@ type HeadingProps = HTMLAttributes<HTMLHeadElement> & {
 
 type TextProps = (HTMLAttributes<HTMLSpanElement> | HTMLAttributes<HTMLParagraphElement>) & {
   tag: TextTag;
-  children: string;
+  children: ReactNode;
   className?: string;
   weight?: Weight;
   size?: Size;
@@ -37,7 +37,7 @@ export default Typography;
 type TypographyHelperProps = {
   size?: Size;
   weight?: Weight;
-  children: string;
+  children: ReactNode;
   className?: string;
 };
 

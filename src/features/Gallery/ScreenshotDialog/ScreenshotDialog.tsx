@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import cn from "classnames";
@@ -33,20 +33,33 @@ export default function ScreenshotDialog({
   const dialogRef = useRef<HTMLDialogElement | null>(null);
   const [mounted, setMounted] = useState(false);
 
+  
   useEffect(() => {
     setMounted(true);
   }, []);
 
   useEffect(() => {
+
+    const handleClickArrow = (e: KeyboardEvent) => {
+      const key = e.key
+      if (key === "ArrowRight") onNext();
+      if (key === "ArrowLeft") onPrev();
+    }
+
     const dialog = dialogRef.current;
     if (!dialog) return;
 
     if (isOpen && !dialog.open) {
       dialog.showModal();
+      document.addEventListener('keydown', handleClickArrow);
     } else if (!isOpen && dialog.open) {
       dialog.close();
     }
-  }, [isOpen]);
+
+     return () => {
+      document.removeEventListener('keydown', handleClickArrow);
+    };
+  }, [isOpen, onNext, onPrev]);
 
   if (!mounted || !isOpen) return null;
 
