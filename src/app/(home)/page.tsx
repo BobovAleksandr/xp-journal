@@ -3,7 +3,6 @@ import getUserGames from "@/shared/api/toDb/getUserGames";
 import getGamesForMain from "@/shared/api/toIgdb/getGamesForMain";
 import getCurrentSession from "@/features/Auth/getCurrentSession";
 import { cookies } from "next/headers";
-import { TUserGameFull } from "@/entities/game/model/types";
 
 export default async function Home() {
   const currentCookies = (await cookies()).toString();
@@ -12,17 +11,28 @@ export default async function Home() {
   const userId = session?.user.id;
   if (!userId) return null;
 
+  // Игры пользователя с сервера
   const userGames = await getUserGames(userId);
 
+  // Словарь игр пользователя
+  const userGamesMap = new Map(userGames.map((ug) => [ug.id, ug]));
+
+  // Id игр пользователя
   const userGamesIds = userGames.map((game) => game.id);
 
+  // Игры для отображения на странице c IGDB
   const mainPageGames = (await getGamesForMain(userGamesIds)) ?? [];
 
-  const userGamesWithStatus: TUserGameFull[] = mainPageGames.map(game => ({
-    ...game,
-    status: userGames[game.id].status,
-    rating: userGames[game.id].rating,
-  }))
 
-  return <GamesList games={userGamesWithStatus} />;
+  const userGamesFull = mainPageGames.map((game) => {
+    const userGame = userGamesMap.get(game.id);
+
+    return {
+      ...game,
+      status: userGame?.status ?? "notCompleted",
+      rating: userGame?.rating ?? 0,
+    };
+  });
+
+  return <GamesList games={userGamesFull} />;
 }
