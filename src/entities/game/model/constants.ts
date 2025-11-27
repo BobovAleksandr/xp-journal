@@ -12,14 +12,6 @@ import platinumIcon from "@/shared/assets/medal.svg";
 import toPlayIcon from "@/shared/assets/bookmark.svg";
 
 export const USER_GAME_STATUSES = {
-  notCompleted: {
-    value: 'Не пройдена',
-    icon: notCompletedIcon,
-  },
-  inProgress: {
-    value: 'Не закончена',
-    icon: inProgressIcon,
-  },
   toPlay: {
     value: 'Хочу пройти',
     icon: completedIcon,
@@ -31,6 +23,14 @@ export const USER_GAME_STATUSES = {
   platinum: {
     value: 'Платина',
     icon: toPlayIcon,
+  },
+  notCompleted: {
+    value: 'Не пройдена',
+    icon: notCompletedIcon,
+  },
+  inProgress: {
+    value: 'Не закончена',
+    icon: inProgressIcon,
   },
 } as const;
 

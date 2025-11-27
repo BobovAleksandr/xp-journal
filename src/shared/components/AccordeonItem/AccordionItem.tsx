@@ -1,3 +1,5 @@
+'use client';
+
 import { ComponentType, ReactNode, SVGProps, useState } from "react";
 import styles from "./AccordionItem.module.scss"
 import ChevronDown from "@/shared/assets/chevron-down.svg"

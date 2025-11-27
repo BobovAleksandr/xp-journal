@@ -23,7 +23,7 @@ export default async function Home() {
   // Игры для отображения на странице c IGDB
   const mainPageGames = (await getGamesForMain(userGamesIds)) ?? [];
 
-
+  // Комбинируем данные с БД и IGDB для отображения на странице
   const userGamesFull = mainPageGames.map((game) => {
     const userGame = userGamesMap.get(game.id);
 
@@ -34,5 +34,9 @@ export default async function Home() {
     };
   });
 
-  return <GamesList games={userGamesFull} />;
+  // Сортируем игры по имени
+  const userGamesFullSortedByname = [...userGamesFull].sort((a, b) => a.name.localeCompare(b.name))
+  
+
+  return <GamesList games={userGamesFullSortedByname} />;
 }
