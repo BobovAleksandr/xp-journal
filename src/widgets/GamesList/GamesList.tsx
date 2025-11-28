@@ -15,7 +15,6 @@ type GamesListProps = {
 };
 
 const GamesList = ({ className, games }: GamesListProps) => {
-
   const sortedGamesByStatus: Record<TUserGameStatusKey, TUserGameFull[]> =
     games.reduce((acc, game) => {
       if (!acc[game.status]) {
@@ -27,14 +26,12 @@ const GamesList = ({ className, games }: GamesListProps) => {
 
   return (
     <ul className={cn(styles.gamesSection, className)}>
-      {STATUS_KEYS.map(status => (
-        <AccordionItem
-          key={status}
-          title={USER_GAME_STATUSES[status].value}
-        >
-          <ul className={styles.gamesList}>
-            {sortedGamesByStatus[status] &&
-              sortedGamesByStatus[status].map((game) => (
+      {STATUS_KEYS.map((status) => (
+        <AccordionItem key={status} title={USER_GAME_STATUSES[status].value}>
+          {sortedGamesByStatus[status] &&
+            sortedGamesByStatus[status].length > 0 && (
+              <ul className={styles.gamesList}>
+                {sortedGamesByStatus[status].map((game) => (
                   <li key={game.id}>
                     <GameCard
                       slug={game.slug}
@@ -43,7 +40,8 @@ const GamesList = ({ className, games }: GamesListProps) => {
                     />
                   </li>
                 ))}
-          </ul>
+              </ul>
+            )}
         </AccordionItem>
       ))}
     </ul>

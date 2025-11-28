@@ -6,6 +6,7 @@ import GalleryControls from "@/shared/components/GalleryControls/GalleryControls
 import Image from "next/image";
 import { buildImageUrl } from "@/shared/utils/buildImageUrl";
 import Dialog from "@/shared/components/Dialog/Dialog";
+import { useDialogWithKeyboard } from "@/shared/utils/useDialogWithKeyboard";
 
 type Props = {
   isOpen: boolean;
@@ -26,7 +27,7 @@ const ScreenshotDialog = ({
   onNext,
   onPrev,
 }: Props) => {
-  console.log(imageId);
+  useDialogWithKeyboard({ isOpen, onNext, onPrev });
   return (
     <Dialog
       isOpen={isOpen}

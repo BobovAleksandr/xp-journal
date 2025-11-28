@@ -57,3 +57,9 @@
 .menu_container {
   max-width: 500px;
 }
+
+.menu_container__no_result {
+  background-color: var(--color-accent-10);
+  padding: var(--space-s) var(--space-m);
+  color: var(--color-light-25);
+}

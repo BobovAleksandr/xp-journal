@@ -19,56 +19,60 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
   const [results, setResults] = useState<TSearchGame[] | null>(null);
   const [value, setValue] = useState("");
   const [isPending, setIsPending] = useState(false);
-  
+
   const debouncedSearch = useDebounce(async (value: string) => {
     if (!value.trim()) {
       setResults(null);
       return;
     }
     try {
-      setIsPending(true)
+      setIsPending(true);
       const games = await searchGamesByName(value);
       setResults(games);
     } catch {
       setResults(null);
     } finally {
-      setIsPending(false)
+      setIsPending(false);
     }
   }, 300);
 
   const clearInput = () => {
     setValue("");
-    setResults([]);
+    setResults(null);
   };
-
+  console.log(results);
   return (
     <Dropdown
       trigger={
-<div className={styles.search_container}>
-        <input
-          type="search"
-          name={"search"}
-          placeholder="Найти игру"
-          value={value}
-          className={cn(styles.input, className)}
-          onChange={(e) => {
-            setValue(e.target.value);
-            debouncedSearch(e.target.value);
-          }}
-          {...props}
-        />
-        <div className={styles.loader_container}>
-          {isPending && <Loader className={styles.loader} />}
+        <div className={styles.search_container}>
+          <input
+            type="search"
+            name={"search"}
+            placeholder="Найти игру"
+            value={value}
+            className={cn(styles.input, className)}
+            onChange={(e) => {
+              setValue(e.target.value);
+              debouncedSearch(e.target.value);
+            }}
+            {...props}
+          />
+          <div className={styles.loader_container}>
+            {isPending && <Loader className={styles.loader} />}
+          </div>
         </div>
-</div>
       }
     >
       <MenuContainer onClick={clearInput} className={styles.menu_container}>
-        {results?.map((game) => (
-          <MenuItem as="link" key={game.id} href={`/games/${game.slug}`}>
-            {game.name}
-          </MenuItem>
-        ))}
+        {results && results.length > 0 ? (
+          results.map((game) => (
+            <MenuItem as="link" key={game.id} href={`/games/${game.slug}`}>
+              {game.name}
+            </MenuItem>
+          ))
+        ) : results && results.length === 0 ? (
+          <span className={styles.menu_container__no_result}>Нет результатов</span>
+        ) : null}
       </MenuContainer>
     </Dropdown>
   );

@@ -6,7 +6,7 @@
   @include transition();
   gap: 0;
   
-  &__open {
+  &__open:not(:has(.accordion_content:empty)) {
     grid-template-rows: min-content 1fr;
     @include transition();
     gap: var(--space-m);
@@ -48,6 +48,7 @@
   gap: var(--space-m);
   flex: 1 0 auto;
   text-wrap: nowrap;
+  user-select: none
 }
 
 .accordion_icon {
