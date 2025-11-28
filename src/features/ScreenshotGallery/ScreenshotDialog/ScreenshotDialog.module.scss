@@ -1,8 +1,6 @@
 @use '@/app/styles/mixins.scss' as *;
 
-.image {
-  object-fit: cover;
-  object-position: center center;
+.dialog_image {
   border-radius: var(--border-radius-s);
   @include loading-skeleton;
 }

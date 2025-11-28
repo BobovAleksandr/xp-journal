@@ -3,15 +3,15 @@ import styles from "./Loader.module.scss";
 import cn from "classnames";
 
 type LoaderProps = {
-  size: number;
+  size?: number;
   className?: string;
 };
 
-const Loader = ({ size, className }: LoaderProps) => {
+const Loader = ({ size = 16, className }: LoaderProps) => {
   return (
     <div
       className={cn(styles.loader, className)}
-      style={{ "--width": `${size}vw`} as CSSProperties}
+      style={{ "--width": `${size}px`} as CSSProperties}
     ></div>
   );
 };

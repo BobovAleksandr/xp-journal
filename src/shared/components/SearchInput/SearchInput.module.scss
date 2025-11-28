@@ -41,6 +41,19 @@
   }
 }
 
+.search_container {
+  position: relative;
+}
+
+.loader_container {
+  position: absolute;
+  top: 50%;
+  right: 2rem;
+  width: 1rem;
+  height: 1rem;
+  transform: translateY(-50%);
+}
+
 .menu_container {
   max-width: 500px;
 }

@@ -1,0 +1,21 @@
+@use '@/app/styles/mixins.scss' as *;
+
+.video_container {
+  position: relative;
+  border-radius: var(--border-radius-s);
+  overflow: hidden;
+}
+
+.video_cover {
+  position: absolute;
+  inset: 0;
+  background-color: transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.video {
+   @include loading-skeleton;
+}

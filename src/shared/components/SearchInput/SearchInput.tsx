@@ -9,22 +9,31 @@ import MenuContainer from "../MenuContainer/MenuContainer";
 import MenuItem from "../MenuItem/MenuItem";
 import searchGamesByName from "@/shared/api/toIgdb/searchGamesByName";
 import useDebounce from "@/shared/utils/useDebounce";
+import Loader from "../Loader/Loader";
 
 type SearchInputProps = {
   className?: string;
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 
-const SearchInput = ({ name, className, ...props }: SearchInputProps) => {
-  const [results, setResults] = useState<TSearchGame[]>([]);
+const SearchInput = ({ className, ...props }: SearchInputProps) => {
+  const [results, setResults] = useState<TSearchGame[] | null>(null);
   const [value, setValue] = useState("");
-
+  const [isPending, setIsPending] = useState(false);
+  
   const debouncedSearch = useDebounce(async (value: string) => {
     if (!value.trim()) {
-      setResults([]);
+      setResults(null);
       return;
     }
-    const games = await searchGamesByName(value);
-    setResults(games || []);
+    try {
+      setIsPending(true)
+      const games = await searchGamesByName(value);
+      setResults(games);
+    } catch {
+      setResults(null);
+    } finally {
+      setIsPending(false)
+    }
   }, 300);
 
   const clearInput = () => {
@@ -35,9 +44,10 @@ const SearchInput = ({ name, className, ...props }: SearchInputProps) => {
   return (
     <Dropdown
       trigger={
+<div className={styles.search_container}>
         <input
           type="search"
-          name={name}
+          name={"search"}
           placeholder="Найти игру"
           value={value}
           className={cn(styles.input, className)}
@@ -47,10 +57,14 @@ const SearchInput = ({ name, className, ...props }: SearchInputProps) => {
           }}
           {...props}
         />
+        <div className={styles.loader_container}>
+          {isPending && <Loader className={styles.loader} />}
+        </div>
+</div>
       }
     >
       <MenuContainer onClick={clearInput} className={styles.menu_container}>
-        {results.map((game) => (
+        {results?.map((game) => (
           <MenuItem as="link" key={game.id} href={`/games/${game.slug}`}>
             {game.name}
           </MenuItem>

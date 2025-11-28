@@ -9,7 +9,7 @@ type PageLoaderProps = {
 const PageLoader = ({ className }: PageLoaderProps) => {
   return (
     <div className={cn(styles.pageLoader, className)}>
-      <Loader size={5}/>
+      <Loader size={64}/>
     </div>
   );
 };

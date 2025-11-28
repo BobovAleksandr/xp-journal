@@ -1,8 +1,10 @@
 @use '@/app/styles/mixins.scss' as *;
 
-.image {
-  object-fit: cover;
-  object-position: center center;
+.screenshot {
   border-radius: var(--border-radius-s);
   @include loading-skeleton;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

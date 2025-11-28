@@ -1,0 +1,22 @@
+.dialog {
+  border: none;
+  padding: var(--space-xs);
+  background: transparent;
+  user-select: none;
+
+  &::backdrop {
+    background: rgba(0,0,0,.7);
+  }
+}
+
+.dialog_header {
+  margin-block-end: var(--space-s);
+  display: flex;
+}
+
+.dialog_close {
+  margin-inline-start: auto;
+  &:focus-visible {
+    outline: none;
+  }
+}

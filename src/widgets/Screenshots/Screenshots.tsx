@@ -3,16 +3,16 @@
 import PageSection from "@/shared/components/PageSection/PageSection";
 import styles from "./Screenshots.module.scss";
 import { TClientScreenshot } from "@/entities/game/model/types";
-import Screenshot from "@/features/Gallery/Screenshot/Screenshot";
-import ScreenshotDialog from "@/features/Gallery/ScreenshotDialog/ScreenshotDialog";
-import { memo, useCallback, useState } from "react";
+import Screenshot from "@/features/ScreenshotGallery/Screenshot/Screenshot";
+import ScreenshotDialog from "@/features/ScreenshotGallery/ScreenshotDialog/ScreenshotDialog";
+import { useCallback, useState } from "react";
 
 type ScreenshotsProps = {
   screenshots: TClientScreenshot[];
   gameName: string;
 };
 
-const Screenshots = memo(({ screenshots, gameName }: ScreenshotsProps) => {
+const Screenshots = ({ screenshots, gameName }: ScreenshotsProps) => {
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null);
 
   const handleChangeScreenshot = useCallback((index: number) => {
@@ -60,6 +60,6 @@ const Screenshots = memo(({ screenshots, gameName }: ScreenshotsProps) => {
       />
     </>
   );
-});
+};
 
 export default Screenshots;

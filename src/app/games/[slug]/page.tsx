@@ -9,6 +9,7 @@ import { TCompany } from "@/entities/game/model/types";
 import Expansions from "@/widgets/Expansions/Expansions";
 import { notFound } from "next/navigation";
 import Screenshots from "@/widgets/Screenshots/Screenshots";
+import Videos from "@/widgets/Videos/Videos";
 
 type GamePageProps = {
   params: Promise<{ slug: string }>;
@@ -32,7 +33,8 @@ export default async function GamePage({ params }: GamePageProps) {
     genres,
     platforms,
     expansions,
-    screenshots
+    screenshots,
+    videos
   } = game;
 
   const publishers: TCompany[] = companies ? companies.filter((c) => c.publisher).map((c) => c.company) : [];
@@ -69,6 +71,10 @@ export default async function GamePage({ params }: GamePageProps) {
 
       {screenshots && screenshots.length > 0 && 
         <Screenshots screenshots={screenshots} gameName={name}
+      />}
+
+      {videos && videos.length > 0 && 
+        <Videos videos={videos} 
       />}
 
     </>
