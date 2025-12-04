@@ -1,0 +1,11 @@
+.filter_item {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: var(--space-s);
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}

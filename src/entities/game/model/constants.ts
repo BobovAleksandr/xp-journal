@@ -14,15 +14,15 @@ import toPlayIcon from "@/shared/assets/bookmark.svg";
 export const USER_GAME_STATUSES = {
   toPlay: {
     value: 'Хочу пройти',
-    icon: completedIcon,
+    icon: toPlayIcon,
   },
   completed: {
     value: 'Пройдена',
-    icon: platinumIcon,
+    icon: completedIcon,
   },
   platinum: {
     value: 'Платина',
-    icon: toPlayIcon,
+    icon: platinumIcon,
   },
   notCompleted: {
     value: 'Не пройдена',

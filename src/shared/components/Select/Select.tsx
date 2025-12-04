@@ -16,11 +16,12 @@ type SelectProps<Tkey extends string> = {
   className?: string;
   defaultValue?: Tkey;
   selectOptions: TSelectConfig<Tkey>;
+  closeOnClick?: boolean;
   onChange: (value: Tkey) => void;
 };
 
 
-const Select = <Tkey extends string>({ selectOptions, defaultValue, onChange, className }: SelectProps<Tkey>) => {
+const Select = <Tkey extends string>({ selectOptions, defaultValue, onChange, closeOnClick, className }: SelectProps<Tkey>) => {
   const [currentValue, setCurrentValue] = useState<Tkey | null>(defaultValue ?? null);
   
   const optionsValues = Object.keys(selectOptions) as Tkey[];
@@ -33,6 +34,7 @@ const Select = <Tkey extends string>({ selectOptions, defaultValue, onChange, cl
   return (
     <>
       <Dropdown
+        closeOnClick={closeOnClick}
         trigger={
           <Button
             icon={currentValue ? selectOptions[currentValue].icon : undefined}

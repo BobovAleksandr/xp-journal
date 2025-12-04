@@ -1,13 +1,13 @@
 import Link from "next/link";
 import styles from "./MenuItem.module.scss";
 import cn from "classnames";
-import { ComponentType, SVGProps } from "react";
+import { ComponentType, ReactNode, SVGProps } from "react";
 
 type MenuItemProps = {
   className?: string;
   onClick?: () => void;
   href?: string;
-  children: string;
+  children: ReactNode;
   icon?: ComponentType<SVGProps<SVGSVGElement>>;
   as: "button" | "link";
 };

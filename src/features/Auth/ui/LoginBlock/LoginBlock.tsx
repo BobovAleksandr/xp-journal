@@ -47,6 +47,7 @@ const LoginBlock = ({ user }: LoginBlockProps) => {
         </Button>
       ) : (
         <Dropdown
+          closeOnClick
           trigger={<ProfileButton name={currentName} userImage={user.image} />}
         >
           <MenuItem as="button" onClick={handleLogout} icon={LogoutIcon}>

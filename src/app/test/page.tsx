@@ -1,13 +1,13 @@
 "use client";
 
-import AccordionItem from "@/shared/components/AccordeonItem/AccordionItem";
-import inProgressIcon from "@/shared/assets/pause.svg";
-import completedIcon from "@/shared/assets/check-shape.svg";
+import GamesFilter from "@/features/GamesFilter/GamesFilter";
+import Filter from "@/shared/components/Filter/ui/Filter/Filter";
+import FilterItem from "@/shared/components/Filter/ui/FilterItem/FilterItem";
 
 const TestPage = () => {
   return (
     <>
-      test
+      <GamesFilter />
     </>
   );
 }

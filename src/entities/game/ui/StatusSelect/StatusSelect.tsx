@@ -42,6 +42,7 @@ const StatusSelect = ({
 
   return (
     <Select<TUserGameStatusKey>
+      closeOnClick
       className={className}
       selectOptions={statusOptions}
       defaultValue={status}

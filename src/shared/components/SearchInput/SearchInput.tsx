@@ -43,6 +43,7 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
   console.log(results);
   return (
     <Dropdown
+      closeOnClick
       trigger={
         <div className={styles.search_container}>
           <input
