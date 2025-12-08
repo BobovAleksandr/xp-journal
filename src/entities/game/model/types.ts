@@ -1,4 +1,4 @@
-import { TGameType, TUserGameStatusKey, TWebsiteType } from "./constants";
+import { TGameStatus, TGameType, TUserGameStatusKey, TWebsiteType } from "./constants";
 
 // Тип данных игры с IGDB
 export type TGameIgdb = {
@@ -13,6 +13,7 @@ export type TGameIgdb = {
   videos: TIgdbVideo[];
   websites: TWebsite[];
   game_type: TGameType;
+  game_status: TGameStatus;
   dlcs?: number[];
   platforms: TPltaform[];
   genres: TGenre[];
@@ -24,6 +25,7 @@ export type TGameClient = Omit<TGameIgdb,
   "first_release_date" |
   "involved_companies" |
   "game_type" |
+  "game_status" |
   "cover" |
   "screenshots" |
   "videos" |
@@ -33,6 +35,7 @@ export type TGameClient = Omit<TGameIgdb,
   releaseDate?: number;
   companies: TInvolvedCompany[];
   gameType: TGameType;
+  gameStatus: TGameStatus;
   cover?: TClientCover;
   screenshots: TClientScreenshot[];
   videos: TClientVideo[];

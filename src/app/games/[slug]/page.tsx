@@ -24,6 +24,7 @@ export default async function GamePage({ params }: GamePageProps) {
   const {
     id,
     gameType,
+    gameStatus,
     name,
     cover,
     releaseDate,
@@ -48,7 +49,7 @@ export default async function GamePage({ params }: GamePageProps) {
 
   return (
     <>
-      <GameTitle name={name} gameType={gameType} />
+      <GameTitle name={name} gameType={gameType} gameStatus={gameStatus} />
       
       <GameInfo
         genres={genres}

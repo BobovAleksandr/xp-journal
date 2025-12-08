@@ -77,3 +77,17 @@ export type TWebsiteType = keyof typeof WEBSITE_TYPE;
 // Максимально возможный рейтинг для игр 
 // Влияет на количество отображаемых звзд на странице игры
 export const MAXIMUM_GAME_RATING = 10;
+
+// Отображаем не все статусы
+export const GAME_STATUS = {
+  // 1: "Вышла",
+  2: "Альфа",
+  3: "Бета",
+  4: "Ранний доступ",
+  // 5: "Оффлайн",
+  6: "Отменена",
+  // 7: "Слухи",
+  // 8: "Снята с продажи",
+} as const;
+
+export type TGameStatus = keyof typeof GAME_STATUS;

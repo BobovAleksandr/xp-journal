@@ -17,6 +17,7 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient |
       name,
       genres.name,
       platforms.name,
+      game_status,
       cover.image_id,
       first_release_date,
       collections.name,
@@ -49,13 +50,14 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient |
   if (!data[0]) return null
 
   // Мапим и переименовываем поля в camelCase
-  const { first_release_date, involved_companies, game_type, cover, screenshots, videos, collections, expansions, ...rest } = data[0];
+  const { first_release_date, involved_companies, game_type, game_status, cover, screenshots, videos, collections, expansions, ...rest } = data[0];
 
   const formatedData: TGameClient = {
     ...rest,
     releaseDate: first_release_date,
     companies: involved_companies,
     gameType: game_type,
+    gameStatus: game_status,
     cover: cover ? { id: cover?.id, imageId: cover?.image_id } : undefined,
     screenshots: screenshots?.map(s => ({ id: s.id, imageId: s.image_id })) ?? [],
     videos: videos?.map(s => ({ id: s.id, videoId: s.video_id })) ?? [],

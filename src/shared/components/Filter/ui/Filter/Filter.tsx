@@ -8,11 +8,13 @@ import styles from "./Filter.module.scss";
 type FilterProps = {
   children: ReactNode;
   className?: string;
+  isOpen?: boolean;
 };
 
-const Filter = ({ children, className }: FilterProps) => {
+const Filter = ({ children, isOpen, className }: FilterProps) => {
   return (
     <Dropdown
+      isOpen={isOpen}
       className={cn(styles.filter, className)}
       trigger={
         <Button variant="outline" icon={FilterIcon}>

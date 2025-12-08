@@ -7,7 +7,8 @@ import Filter from "@/shared/components/Filter/ui/Filter/Filter";
 import { useState } from "react";
 import MenuContainer from "@/shared/components/MenuContainer/MenuContainer";
 import FilterItem from "@/shared/components/Filter/ui/FilterItem/FilterItem";
-import styles from './GamesFilter.module.scss'
+import styles from "./GamesFilter.module.scss";
+import Button from "@/shared/components/Button/Button";
 
 const INITIAL_FILTER_STATE = {
   gameStatuses: STATUS_KEYS.reduce((acc, key) => {
@@ -18,9 +19,17 @@ const INITIAL_FILTER_STATE = {
 
 const GamesFilter = () => {
   const [filterState, setFilterState] = useState(INITIAL_FILTER_STATE);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClearFilter = () => {
+    setFilterState(INITIAL_FILTER_STATE);
+    setIsOpen(false);
+  };
+
+  
 
   return (
-    <Filter>
+    <Filter className={styles.filter} isOpen={isOpen}>
       <MenuContainer>
         {STATUS_KEYS.map((status) => {
           const isChecked = filterState.gameStatuses[status];
@@ -45,6 +54,19 @@ const GamesFilter = () => {
           );
         })}
       </MenuContainer>
+      <div className={styles.buttons}>
+        <Button type="button" variant="light" className={styles.button}>
+          Применить
+        </Button>
+        <Button
+          type="button"
+          variant="outline"
+          className={styles.button}
+          onClick={handleClearFilter}
+        >
+          Отмена
+        </Button>
+      </div>
     </Filter>
   );
 };

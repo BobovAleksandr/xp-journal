@@ -3,53 +3,28 @@
 import styles from "./Dropdown.module.scss";
 import cn from "classnames";
 import Menu from "@/shared/components/MenuContainer/MenuContainer";
-import { useRef, useState } from "react";
+import { ReactNode, useState } from "react";
 
 type DropdownProps = {
   className?: string;
-  trigger: React.ReactNode;
-  children: React.ReactNode;
-  closeOnClick?: boolean;
+  trigger: ReactNode;
+  children: ReactNode;
+  isOpen?: boolean;
 };
 
 const Dropdown = ({
   children,
   trigger,
   className,
-  closeOnClick = false,
+  isOpen = false,
 }: DropdownProps) => {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  // TODO - удалить?
-  // useEffect(() => {
-  //   const onClick = (e: MouseEvent) => {
-  //     if (!ref.current) return;
-  //     if (!ref.current.contains(e.target as Node)) {
-  //       setOpen(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", onClick);
-  //   return () => document.removeEventListener("click", onClick);
-  // }, []);
-
+  const [open, setOpen] = useState(isOpen);
   return (
-    <div ref={ref} className={cn(styles.dropdown, className)}>
+    <div className={cn(styles.dropdown, className)}>
       <div onClick={() => setOpen((open) => !open)} className={styles.trigger}>
         {trigger}
       </div>
-      {open && (
-        <Menu
-          className={styles.dropdown_menu}
-          onClick={
-            closeOnClick
-              ? () => setOpen(false)
-              : undefined
-          }
-        >
-          {children}
-        </Menu>
-      )}
+      {open && <Menu className={styles.dropdown_menu}>{children}</Menu>}
     </div>
   );
 };
