@@ -130,9 +130,14 @@ export type TClientExpansion = Omit<TIgdbExpansion, "cover" | "first_release_dat
   releaseDate?: number;
 }
 
-export type TSearchGame = {
+export type TIgdbSearchGame = {
   id: number;
   name: string;
   slug: string;
+  first_release_date: number;
+}
+
+export type TClientSearchGame = Omit<TIgdbSearchGame, "first_release_date"> & {
+  releaseDate?: number;
 }
 

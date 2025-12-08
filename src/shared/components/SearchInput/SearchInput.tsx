@@ -4,7 +4,7 @@ import { InputHTMLAttributes, useState } from "react";
 import styles from "./SearchInput.module.scss";
 import cn from "classnames";
 import Dropdown from "../Dropdown/Dropdown";
-import { TSearchGame } from "@/entities/game/model/types";
+import { TClientSearchGame } from "@/entities/game/model/types";
 import MenuContainer from "../MenuContainer/MenuContainer";
 import MenuItem from "../MenuItem/MenuItem";
 import searchGamesByName from "@/shared/api/toIgdb/searchGamesByName";
@@ -16,7 +16,7 @@ type SearchInputProps = {
 } & Omit<InputHTMLAttributes<HTMLInputElement>, "type">;
 
 const SearchInput = ({ className, ...props }: SearchInputProps) => {
-  const [results, setResults] = useState<TSearchGame[] | null>(null);
+  const [results, setResults] = useState<TClientSearchGame[] | null>(null);
   const [value, setValue] = useState("");
   const [isPending, setIsPending] = useState(false);
 
@@ -40,7 +40,13 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
     setValue("");
     setResults(null);
   };
-  console.log(results);
+
+  const getYearString = (date: number | undefined) => {
+    if (!date) return null
+    const year = new Date(date * 1000).getFullYear()
+    return ` (${year})`
+  }
+
   return (
     <Dropdown
       closeOnClick
@@ -68,7 +74,7 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
         {results && results.length > 0 ? (
           results.map((game) => (
             <MenuItem as="link" key={game.id} href={`/games/${game.slug}`}>
-              {game.name}
+              {game.name}{getYearString(game.releaseDate)}
             </MenuItem>
           ))
         ) : results && results.length === 0 ? (
