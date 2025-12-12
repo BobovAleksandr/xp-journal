@@ -3,7 +3,7 @@ import styles from "./GameInfo.module.scss";
 import cn from "classnames";
 import GameFacts from "../GameFacts/GameFacts";
 import {
-  TClientCover,
+  TClientImage,
   TCompany,
   TCollection,
   TWebsite,
@@ -20,7 +20,7 @@ import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
 type GameInfoProps = {
   id: number;
   className?: string;
-  cover?: TClientCover;
+  cover?: TClientImage;
   name: string;
   releaseDate?: number;
   developers?: TCompany[];

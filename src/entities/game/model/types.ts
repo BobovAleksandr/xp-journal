@@ -5,7 +5,7 @@ export type TGameIgdb = {
   id: number;
   slug: string;
   name: string;
-  cover?: TIgdbCover;
+  cover?: TIgdbImage;
   first_release_date?: number;
   collections?: TCollection[];
   involved_companies: TInvolvedCompany[];
@@ -36,7 +36,7 @@ export type TGameClient = Omit<TGameIgdb,
   companies: TInvolvedCompany[];
   gameType: TGameType;
   gameStatus: TGameStatus;
-  cover?: TClientCover;
+  cover?: TClientImage;
   screenshots: TClientScreenshot[];
   videos: TClientVideo[];
   collection?: TCollection;
@@ -58,12 +58,12 @@ export type TClientGame = Pick<TGameClient, "id" | "name" | "cover" | "slug">
 
 export type TUserGameFull = TGameUser & TClientGame;
 
-export type TIgdbCover = {
+export type TIgdbImage = {
   id: number;
   image_id: string;
 };
 
-export type TClientCover = Omit<TIgdbCover, "image_id"> & {
+export type TClientImage = Omit<TIgdbImage, "image_id"> & {
   imageId: string;
 }
 
@@ -119,14 +119,14 @@ export type TGenre = {
 
 export type TIgdbExpansion = {
   id: number;
-  cover: TIgdbCover;
+  cover: TIgdbImage;
   name: string;
   slug: string;
   first_release_date?: number;
 }
 
 export type TClientExpansion = Omit<TIgdbExpansion, "cover" | "first_release_date"> & {
-  cover: TClientCover;
+  cover: TClientImage;
   releaseDate?: number;
 }
 

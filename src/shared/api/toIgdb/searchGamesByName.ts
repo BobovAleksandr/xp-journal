@@ -1,7 +1,7 @@
 "use server";
 
-import { BASE_URL, ENDPOINTS } from "@/app/constants";
-import { TClientSearchGame, TIgdbSearchGame } from "@/entities/game/model/types";
+import {BASE_URL, ENDPOINTS} from "@/app/constants";
+import {TClientSearchGame, TIgdbSearchGame} from "@/entities/game/model/types";
 
 export default async function searchGamesByName(name: string): Promise<TClientSearchGame[]> {
 
@@ -25,12 +25,10 @@ export default async function searchGamesByName(name: string): Promise<TClientSe
 
     const data: TIgdbSearchGame[] = await response.json();
 
-    const formatedData: TClientSearchGame[] = data.map(game => ({
+    return data.map(game => ({
       ...game,
       releaseDate: game.first_release_date,
-    }))
-
-    return formatedData;
+    }));
 
   } catch (error) {
     throw new Error(`Не удалось загрузить список игр: ${(error as Error).message}`);

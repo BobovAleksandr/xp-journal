@@ -49,7 +49,6 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
 
   return (
     <Dropdown
-      closeOnClick
       trigger={
         <div className={styles.search_container}>
           <input

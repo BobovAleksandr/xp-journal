@@ -1,7 +1,7 @@
 'use server';
 
-import { BASE_URL, ENDPOINTS } from "@/app/constants";
-import { TGameClient, TGameIgdb } from "@/entities/game/model/types";
+import {BASE_URL, ENDPOINTS} from "@/app/constants";
+import {TGameClient, TGameIgdb} from "@/entities/game/model/types";
 
 export default async function getGameBySlug(slug: string): Promise<TGameClient | null> {
   const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
@@ -52,24 +52,28 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient |
   // Мапим и переименовываем поля в camelCase
   const { first_release_date, involved_companies, game_type, game_status, cover, screenshots, videos, collections, expansions, ...rest } = data[0];
 
-  const formatedData: TGameClient = {
+  return {
     ...rest,
     releaseDate: first_release_date,
     companies: involved_companies,
     gameType: game_type,
     gameStatus: game_status,
-    cover: cover ? { id: cover?.id, imageId: cover?.image_id } : undefined,
-    screenshots: screenshots?.map(s => ({ id: s.id, imageId: s.image_id })) ?? [],
-    videos: videos?.map(s => ({ id: s.id, videoId: s.video_id })) ?? [],
-    collection: collections ? { slug: collections?.[0].slug, name: collections?.[0].name } : undefined,
+    cover: cover ? {id: cover?.id, imageId: cover?.image_id} : undefined,
+    screenshots: screenshots?.map(s => ({id: s.id, imageId: s.image_id})) ?? [],
+    videos: videos?.map(s => ({id: s.id, videoId: s.video_id})) ?? [],
+    collection: collections ? {
+      slug: collections?.[0].slug,
+      name: collections?.[0].name
+    } : undefined,
     expansions: expansions ? expansions.map((exp) => ({
-      id: exp.id, name: exp.name, slug: exp.slug, releaseDate: exp.first_release_date,
+      id: exp.id,
+      name: exp.name,
+      slug: exp.slug,
+      releaseDate: exp.first_release_date,
       cover: {
         id: exp.cover.id,
         imageId: exp.cover.image_id,
       },
     })) : undefined,
   };
-
-  return formatedData;
 }

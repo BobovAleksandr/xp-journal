@@ -1,0 +1,18 @@
+.games_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-l);
+}
+
+.cover_container {
+  max-width: 360px;
+  aspect-ratio: 1;
+  padding: var(--space-m);
+  position: relative;
+  background-color: var(--color-gray-60);
+  border-radius: var(--border-radius-s);
+}
+
+.cover {
+  object-fit: contain;
+}

@@ -1,4 +1,5 @@
-type ImageSize = 
+type ImageSize =
+  | 'original'      // Оригинальный размер
   | 'cover_small'     // 90x128 
   | 'cover_big'       // 264x374
   | 'cover_big_2x'    // 528x704

@@ -3,23 +3,23 @@
 import { BASE_URL, ENDPOINTS } from "@/app/constants";
 import { TClientCollection, TIgdbCollection } from "@/entities/collection/types";
 
-export default async function getGamesByCollection(collectionSlug: string): Promise<TClientCollection | null> {
+export default async function getGamesByCompany(companySlug: string): Promise<TClientCollection | null> {
   try {
-    const response = await fetch(`${BASE_URL}${ENDPOINTS.COLLECTIONS}`, {
+    const response = await fetch(`${BASE_URL}${ENDPOINTS.COMPANIES}`, {
       method: 'POST',
       headers: {
         'Client-ID': process.env.IGDB_CLIENT_ID!,
         Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN!}`,
       },
       body: `
-        fields name, games.id, games.slug, games.name, games.cover.image_id;
-        where slug = "${collectionSlug}";
+        fields game.id, game.slug, game.name, game.cover.image_id, developer, publisher;
+        where company.slug = "${companySlug}";
         limit: 500;
       `,
     });
 
     if (!response.ok) {
-      throw new Error(`Ошибка получения данных о серии игр`);
+      throw new Error(`Ошибка получения данных о компании`);
     }
 
     const dataArray: TIgdbCollection[] = (await response.json());
