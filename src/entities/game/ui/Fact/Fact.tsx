@@ -1,7 +1,7 @@
 import CustomLink, {
   TCustomLink,
 } from "@/shared/components/CustomLink/CustomLink";
-import styles from "./GameFact.module.scss";
+import styles from "./Fact.module.scss";
 import cn from "classnames";
 import { Span } from "@/shared/components/Typography/Typography";
 
@@ -22,7 +22,7 @@ type LinkFact = BaseFact & {
 
 type GameFactProps = TextFact | LinkFact;
 
-const GameFact = (props: GameFactProps) => {
+const Fact = (props: GameFactProps) => {
   const { title, content, className, variant } = props;
 
   return (
@@ -50,4 +50,4 @@ const GameFact = (props: GameFactProps) => {
   );
 };
 
-export default GameFact;
+export default Fact;

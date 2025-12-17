@@ -1,4 +1,4 @@
-import GameFact from "@/entities/game/ui/GameFact/GameFact";
+import Fact from "@/entities/game/ui/Fact/Fact";
 import styles from "./GameFacts.module.scss";
 import cn from "classnames";
 import {
@@ -56,14 +56,14 @@ const GameFacts = ({
     <div className={cn(styles.facts, className)}>
       <ul className={styles.facts_group}>
         {releaseDate && (
-          <GameFact
+          <Fact
             variant="text"
             title="Дата выхода"
             content={convertDate(releaseDate)}
           />
         )}
         {daysToRelease && !isReleased && (
-          <GameFact
+          <Fact
             variant="text"
             title="Дней до выхода"
             content={String(daysToRelease)}
@@ -71,7 +71,7 @@ const GameFacts = ({
         )}
 
         {shouldShowDevelopers && (
-          <GameFact
+          <Fact
             variant="link"
             title={developersLinks.length > 1 ? "Разработчики" : "Разработчик"}
             content={developersLinks}
@@ -79,7 +79,7 @@ const GameFacts = ({
         )}
 
         {shouldShowPublishers && (
-          <GameFact
+          <Fact
             variant="link"
             title={publishersLinks.length > 1 ? "Издатели" : "Издатель"}
             content={publishersLinks}
@@ -87,7 +87,7 @@ const GameFacts = ({
         )}
 
         {collection && (
-          <GameFact
+          <Fact
             variant="link"
             title="Серия"
             content={{
@@ -103,7 +103,7 @@ const GameFacts = ({
         <ul className={cn(styles.facts_group, styles.facts_group__second)}>
 
         {platforms && platformsStringArray && (
-          <GameFact
+          <Fact
             variant="text"
             title={platformsStringArray.length > 1 ? "Платформы" : "Платформа"}
             content={platformsStringArray}
@@ -111,7 +111,7 @@ const GameFacts = ({
         )}
 
         {genres && genresStringArray && (
-          <GameFact
+          <Fact
             variant="text"
             title={genresStringArray.length > 1 ? "Жанры" : "Жанр"}
             content={genresStringArray}

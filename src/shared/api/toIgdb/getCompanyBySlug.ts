@@ -1,6 +1,6 @@
 'use server';
 
-import { BASE_URL, ENDPOINTS } from "@/app/constants";
+import {BASE_URL, ENDPOINTS} from "@/app/constants";
 import {TClientCompany, TIgdbCompany} from "@/entities/company/types";
 
 type TIgdbCompanyResponse = {
@@ -17,7 +17,7 @@ export default async function getCompanyBySlug(companySlug: string): Promise<TCl
         Authorization: `Bearer ${process.env.IGDB_ACCESS_TOKEN!}`,
       },
       body: `
-        fields company.name, company.country, company.logo.image_id, company.created_at;
+        fields company.name, company.country, company.logo.image_id, company.parent.slug, company.parent.name, company.created_at, company.status;
         where company.slug = "${companySlug}";
         limit: 1;
       `,
