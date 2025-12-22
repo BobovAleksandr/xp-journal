@@ -5,7 +5,7 @@ import Dropdown from "../Dropdown/Dropdown";
 import styles from "./Select.module.scss";
 import cn from "classnames";
 import MenuItem from "../MenuItem/MenuItem";
-import {ComponentType, SVGProps, useState} from "react";
+import { ComponentType, SVGProps, useState } from "react";
 
 export type TSelectConfig<Tkey extends string> = Record<
   Tkey,
@@ -16,19 +16,22 @@ type SelectProps<Tkey extends string> = {
   className?: string;
   defaultValue?: Tkey;
   selectOptions: TSelectConfig<Tkey>;
-  closeOnClick?: boolean;
   onChange: (value: Tkey) => void;
+  onToggle: (open: boolean) => void;
+  isOpen: boolean;
 };
 
-
 const Select = <Tkey extends string>({
-                                       selectOptions,
-                                       defaultValue,
-                                       onChange,
-                                       closeOnClick,
-                                       className
-                                     }: SelectProps<Tkey>) => {
-  const [currentValue, setCurrentValue] = useState<Tkey | null>(defaultValue ?? null);
+  selectOptions,
+  defaultValue,
+  onChange,
+  className,
+  onToggle,
+  isOpen,
+}: SelectProps<Tkey>) => {
+  const [currentValue, setCurrentValue] = useState<Tkey | null>(
+    defaultValue ?? null
+  );
 
   const optionsValues = Object.keys(selectOptions) as Tkey[];
 
@@ -40,6 +43,8 @@ const Select = <Tkey extends string>({
   return (
     <>
       <Dropdown
+        isOpen={isOpen}
+        onToggle={onToggle}      
         trigger={
           <Button
             icon={currentValue ? selectOptions[currentValue].icon : undefined}

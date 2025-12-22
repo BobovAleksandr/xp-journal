@@ -3,28 +3,30 @@
 import styles from "./Dropdown.module.scss";
 import cn from "classnames";
 import Menu from "@/shared/components/MenuContainer/MenuContainer";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 type DropdownProps = {
   className?: string;
   trigger: ReactNode;
   children: ReactNode;
-  isOpen?: boolean;
+  isOpen: boolean;
+  onToggle: (open: boolean) => void;
 };
 
 const Dropdown = ({
   children,
   trigger,
   className,
-  isOpen = false,
+  isOpen,
+  onToggle,
 }: DropdownProps) => {
-  const [open, setOpen] = useState(isOpen);
+
   return (
     <div className={cn(styles.dropdown, className)}>
-      <div onClick={() => setOpen((open) => !open)} className={styles.trigger}>
+      <div onClick={() => onToggle(!isOpen)} className={styles.trigger}>
         {trigger}
       </div>
-      {open && <Menu className={styles.dropdown_menu}>{children}</Menu>}
+      {isOpen && <Menu className={styles.dropdown_menu}>{children}</Menu>}
     </div>
   );
 };

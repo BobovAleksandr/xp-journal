@@ -9,6 +9,7 @@ import MenuItem from "@/shared/components/MenuItem/MenuItem";
 import LogoutIcon from "@/shared/assets/arrow-right-from-square.svg";
 import { createAuthClient } from "better-auth/client";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 type LoginBlockProps = {
   user?: {
@@ -20,6 +21,7 @@ type LoginBlockProps = {
 const client = createAuthClient();
 
 const LoginBlock = ({ user }: LoginBlockProps) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const router = useRouter();
   const currentName = user?.name || "Пользователь";
 
@@ -47,6 +49,8 @@ const LoginBlock = ({ user }: LoginBlockProps) => {
         </Button>
       ) : (
         <Dropdown
+          isOpen={dropdownOpen}
+          onToggle={setDropdownOpen}
           trigger={<ProfileButton name={currentName} userImage={user.image} />}
         >
           <MenuItem as="button" onClick={handleLogout} icon={LogoutIcon}>

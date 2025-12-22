@@ -6,7 +6,7 @@ import {
   TUserGameStatusKey,
   USER_GAME_STATUSES,
 } from "../../model/constants";
-import { memo } from "react";
+import { memo, useState } from "react";
 import { TGamePayload } from "@/widgets/GameControls/hooks/gameReducer";
 
 type StatusSelectProps = {
@@ -32,6 +32,7 @@ const StatusSelect = ({
   isReleased,
   className,
 }: StatusSelectProps) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const statusOptions = isReleased
     ? statusSelectItems
     : (Object.fromEntries(
@@ -42,11 +43,13 @@ const StatusSelect = ({
 
   return (
     <Select<TUserGameStatusKey>
-      closeOnClick
+      isOpen={dropdownOpen}
+      onToggle={setDropdownOpen}
       className={className}
       selectOptions={statusOptions}
       defaultValue={status}
       onChange={(value) => {
+        setDropdownOpen(false);
         action({ action: "update", payload: { status: value } });
       }}
     />

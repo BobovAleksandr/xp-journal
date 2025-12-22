@@ -19,6 +19,7 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
   const [results, setResults] = useState<TClientSearchGame[] | null>(null);
   const [value, setValue] = useState("");
   const [isPending, setIsPending] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const debouncedSearch = useDebounce(async (value: string) => {
     if (!value.trim()) {
@@ -28,6 +29,7 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
     try {
       setIsPending(true);
       const games = await searchGamesByName(value);
+      setDropdownOpen(true);
       setResults(games);
     } catch {
       setResults(null);
@@ -39,6 +41,7 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
   const clearInput = () => {
     setValue("");
     setResults(null);
+    setDropdownOpen(false);
   };
 
   const getYearString = (date: number | undefined) => {
@@ -49,6 +52,8 @@ const SearchInput = ({ className, ...props }: SearchInputProps) => {
 
   return (
     <Dropdown
+    isOpen={dropdownOpen}
+    onToggle={setDropdownOpen}
       trigger={
         <div className={styles.search_container}>
           <input
