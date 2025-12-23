@@ -4,7 +4,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-s);
   padding: var(--space-s) var(--space-m);
   color: var(--color-light-25);
   background-color: var(--color-accent-10);
@@ -23,11 +23,12 @@
   }
 }
 
+.filter_block:not(:last-child) {
+  margin-block-end: var(--space-s);
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
-  margin-block-start: var(--space-s);
 }
-
-.button {}

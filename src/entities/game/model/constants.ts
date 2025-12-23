@@ -39,7 +39,7 @@ export const BEFORE_RELEASE_STATUSES: TUserGameStatusKey[] = [
   "toPlay",
 ];
 
-export const STATUS_KEYS = Object.keys(USER_GAME_STATUSES) as TUserGameStatusKey[]
+export const STATUS_KEYS = Object.keys(USER_GAME_STATUSES) as TUserGameStatusKey[];
 
 export type TUserGameStatusKey = keyof typeof USER_GAME_STATUSES
 
@@ -59,6 +59,8 @@ export const GAME_TYPE = {
   12: "Форк",
   14: "Обновление",
 } as const;
+
+export const GAME_TYPE_KEYS = Object.keys(GAME_TYPE).map(Number) as TGameType[];
 
 export type TGameType = keyof typeof GAME_TYPE;
 

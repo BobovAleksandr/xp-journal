@@ -3,7 +3,7 @@
 import styles from "./Dropdown.module.scss";
 import cn from "classnames";
 import Menu from "@/shared/components/MenuContainer/MenuContainer";
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 
 type DropdownProps = {
   className?: string;
@@ -21,8 +21,25 @@ const Dropdown = ({
   onToggle,
 }: DropdownProps) => {
 
+  const rootRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleClickOutside = (e: MouseEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) {
+        onToggle(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onToggle]);
+
   return (
-    <div className={cn(styles.dropdown, className)}>
+    <div ref={rootRef} className={cn(styles.dropdown, className)}>
       <div onClick={() => onToggle(!isOpen)} className={styles.trigger}>
         {trigger}
       </div>
