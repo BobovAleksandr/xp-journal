@@ -1,11 +1,21 @@
 'use server';
 
 import { BASE_URL, ENDPOINTS } from "@/app/constants";
+import { TGameType } from "@/entities/game/model/constants";
 import { TClientGame, TIgdbGames } from "@/entities/game/model/types";
 
-export default async function getGamesForMain(ids: number[]): Promise<TClientGame[] | null> {
+export default async function getGamesForMain(
+  ids: number[],
+  gameTypes: TGameType[] = []
+): Promise<TClientGame[] | null> {
   try {
     if (ids.length === 0) return [];
+
+    // Формируем условие фильтрации по типам
+    let whereClause = `id = (${ids.join(',')})`;
+    if (gameTypes.length > 0) {
+      whereClause += ` & game_type = (${gameTypes.join(',')})`;
+    }
 
     const response = await fetch(`${BASE_URL}${ENDPOINTS.GAMES}`, {
       method: 'POST',
@@ -15,7 +25,7 @@ export default async function getGamesForMain(ids: number[]): Promise<TClientGam
       },
       body: `
         fields id, slug, name, cover.image_id;
-        where id = (${ids.join(',')});
+        where ${whereClause};
         limit 500;
       `,
     });
@@ -26,7 +36,7 @@ export default async function getGamesForMain(ids: number[]): Promise<TClientGam
 
     const data: TIgdbGames[] = await response.json();
 
-    if (!data[0]) return null
+    if (!data[0]) return null;
 
     return data.map(({ id, slug, name, cover }) => ({
       id,
@@ -34,7 +44,6 @@ export default async function getGamesForMain(ids: number[]): Promise<TClientGam
       name,
       cover: cover ? { id: cover.id, imageId: cover.image_id } : undefined,
     }));
-
   } catch (error) {
     throw new Error(`Не удалось загрузить список игр: ${(error as Error).message}`);
   }

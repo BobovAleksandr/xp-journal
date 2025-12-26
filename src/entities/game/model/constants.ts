@@ -46,32 +46,32 @@ export type TUserGameStatusKey = keyof typeof USER_GAME_STATUSES
 export type TUserGameStatusValue = typeof USER_GAME_STATUSES[TUserGameStatusKey]
 
 export const GAME_TYPE = {
-  0: "Основная игра",
-  1: "DLC",
-  2: "Дополнение",
-  3: "Сборник",
-  4: "Отдельное дополнение",
-  5: "Мод",
-  6: "Эпизод",
-  7: "Сезон",
-  8: "Ремейк",
-  11: "Порт",
-  12: "Форк",
-  14: "Обновление",
+  "0": "Основная игра",
+  "1": "DLC",
+  "2": "Дополнение",
+  "3": "Сборник",
+  "4": "Отдельное дополнение",
+  "5": "Мод",
+  "6": "Эпизод",
+  "7": "Сезон",
+  "8": "Ремейк",
+  "11": "Порт",
+  "12": "Форк",
+  "14": "Обновление",
 } as const;
 
-export const GAME_TYPE_KEYS = Object.keys(GAME_TYPE).map(Number) as TGameType[];
+export const GAME_TYPE_KEYS = Object.keys(GAME_TYPE) as TGameType[];
 
 export type TGameType = keyof typeof GAME_TYPE;
 
 export const WEBSITE_TYPE = {
-  1: { title: "Официальный сайт", icon: WebIcon },
-  6: { title: "Twitch", icon: TwitchIcon },
-  9: { title: "YouTube", icon: YoutubeIcon },
-  13: { title: "Steam", icon: SteamIcon },
-  16: { title: "Epic Games Store", icon: EgsIcon },
-  17: { title: "GOG", icon: GogIcon },
-  18: { title: "Discord", icon: DiscordIcon }
+  "1": { title: "Официальный сайт", icon: WebIcon },
+  "6": { title: "Twitch", icon: TwitchIcon },
+  "9": { title: "YouTube", icon: YoutubeIcon },
+  "13": { title: "Steam", icon: SteamIcon },
+  "16": { title: "Epic Games Store", icon: EgsIcon },
+  "17": { title: "GOG", icon: GogIcon },
+  "18": { title: "Discord", icon: DiscordIcon }
 } as const;
 
 export type TWebsiteType = keyof typeof WEBSITE_TYPE;
@@ -82,14 +82,14 @@ export const MAXIMUM_GAME_RATING = 10;
 
 // Отображаем не все статусы
 export const GAME_STATUS = {
-  // 1: "Вышла",
-  2: "Альфа",
-  3: "Бета",
-  4: "Ранний доступ",
-  // 5: "Оффлайн",
-  6: "Отменена",
-  // 7: "Слухи",
-  // 8: "Снята с продажи",
+  // "1": "Вышла",
+  "2": "Альфа",
+  "3": "Бета",
+  "4": "Ранний доступ",
+  // "5": "Оффлайн",
+  "6": "Отменена",
+  // "7": "Слухи",
+  // "8": "Снята с продажи",
 } as const;
 
 export type TGameStatus = keyof typeof GAME_STATUS;

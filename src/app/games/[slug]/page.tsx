@@ -40,7 +40,7 @@ export default async function GamePage({ params }: GamePageProps) {
 
   const publishers: TCompany[] = companies ? companies.filter((c) => c.publisher).map((c) => c.company) : [];
   const developers: TCompany[] = companies ? companies.filter((c) => c.developer).map((c) => c.company) : [];
-  const filteredWebsites = websites?.filter((site) => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => a.type! - b.type!);
+  const filteredWebsites = websites?.filter((site) => site.type && WEBSITE_TYPE[site.type]).sort((a, b) => Number(a.type!) - Number(b.type!));
 
   const releaseStatus = releaseDate ? calculateDaysToRelease(releaseDate) : null;
   const isReleased = releaseStatus?.isReleased || false;
