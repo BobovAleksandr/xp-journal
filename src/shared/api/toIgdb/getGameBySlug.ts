@@ -35,7 +35,8 @@ export default async function getGameBySlug(slug: string): Promise<TGameClient |
       expansions.name,
       expansions.first_release_date,
       expansions.cover.image_id,
-      expansions.slug;
+      expansions.slug,
+      summary;
     where slug = "${slug}";
     limit 1;
   `,

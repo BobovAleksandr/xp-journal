@@ -18,6 +18,7 @@ export type TGameIgdb = {
   platforms: TPltaform[];
   genres: TGenre[];
   expansions?: TIgdbExpansion[];
+  summary?: string;
 };
 
 // Тип данных игры в проекте

@@ -35,7 +35,8 @@ export default async function GamePage({ params }: GamePageProps) {
     platforms,
     expansions,
     screenshots,
-    videos
+    videos,
+    summary,
   } = game;
 
   const publishers: TCompany[] = companies ? companies.filter((c) => c.publisher).map((c) => c.company) : [];
@@ -64,6 +65,7 @@ export default async function GamePage({ params }: GamePageProps) {
         id={id}
         isReleased={isReleased}
         daysToRelease={daysToRelease}
+        summary={summary}
       />
 
       {expansions && 

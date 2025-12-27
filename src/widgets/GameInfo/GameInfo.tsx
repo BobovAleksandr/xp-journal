@@ -16,6 +16,7 @@ import GameControls from "../GameControls/GameControls";
 import { cookies } from "next/headers";
 import getCurrentSession from "@/features/Auth/getCurrentSession";
 import { getUserGameById } from "@/shared/api/toDb/getUserGameById";
+import { P } from "@/shared/components/Typography/Typography";
 
 type GameInfoProps = {
   id: number;
@@ -31,6 +32,7 @@ type GameInfoProps = {
   daysToRelease?: number;
   platforms: TPltaform[];
   genres: TGenre[];
+  summary?: string;
 };
 
 const GameInfo = async ({
@@ -47,6 +49,7 @@ const GameInfo = async ({
   daysToRelease,
   platforms,
   genres,
+  summary,
 }: GameInfoProps) => {
   const currentCookies = (await cookies()).toString();
   const session = await getCurrentSession(currentCookies);
@@ -73,6 +76,7 @@ const GameInfo = async ({
           platforms={platforms}
           genres={genres}
         />
+        {summary && <P className={styles.game_summary}>{summary}</P>}
         <div className={styles.game_interactives}>
           {userId && (
             <GameControls

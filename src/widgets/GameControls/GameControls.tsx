@@ -82,7 +82,6 @@ const GameControls = ({
 
   return (
     <section className={cn(styles.game_controls, className)}>
-      <span>{gameState.error}</span>
       {addedInCollection && (
         <GameRating rating={gameState.rating} action={handleUpdateGame} />
       )}
