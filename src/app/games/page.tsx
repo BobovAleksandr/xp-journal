@@ -8,12 +8,13 @@ import { convertUrlToFilter } from "@/features/GamesFilter/actions/convertParams
 export default async function Home({
   searchParams,
 }: {
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }) {
+  const params = await searchParams;
   const currentCookies = (await cookies()).toString();
   const session = await getCurrentSession(currentCookies);
 
-  const filters = convertUrlToFilter(searchParams);
+  const filters = convertUrlToFilter(params);
 
   const userId = session?.user.id;
   if (!userId) return null;

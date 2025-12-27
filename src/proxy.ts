@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server";
 import { DEFAULT_FILTER_STATE } from "./features/GamesFilter/model/constants";
 import { convertFilterToUrl } from "./features/GamesFilter/actions/convertParams";
 
-export default function middleware(req: NextRequest) {
+export default function proxy(req: NextRequest) {
   const url = req.nextUrl;
   const params = url.searchParams;
   const hasFiltersCookie = req.cookies.has('filters');
