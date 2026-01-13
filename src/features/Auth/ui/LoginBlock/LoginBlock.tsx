@@ -1,12 +1,17 @@
 "use client";
 
 import Button from "@/shared/components/Button/Button";
-import { GUEST_ONLY_ROUTES, PUBLIC_ROUTES } from "@/app/constants";
+import {
+  AUTH_ONLY_ROUTES,
+  GUEST_ONLY_ROUTES,
+  PUBLIC_ROUTES,
+} from "@/app/constants";
 import personIcon from "./../assets/icons/person.svg";
 import ProfileButton from "../ProfileButton/ProfileButton";
 import Dropdown from "@/shared/components/Dropdown/Dropdown";
 import MenuItem from "@/shared/components/MenuItem/MenuItem";
 import LogoutIcon from "@/shared/assets/arrow-right-from-square.svg";
+import StarIcon from "@/shared/assets/star.svg";
 import { createAuthClient } from "better-auth/client";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -53,6 +58,9 @@ const LoginBlock = ({ user }: LoginBlockProps) => {
           onToggle={setDropdownOpen}
           trigger={<ProfileButton name={currentName} userImage={user.image} />}
         >
+          <MenuItem as="link" href={AUTH_ONLY_ROUTES.MY_GAMES} icon={StarIcon} onClick={() => setDropdownOpen(false) }>
+            Мои игры
+          </MenuItem>
           <MenuItem as="button" onClick={handleLogout} icon={LogoutIcon}>
             Выйти
           </MenuItem>

@@ -39,7 +39,7 @@ const MenuItem = ({
 
   if (as === "link") {
     return (
-      <Link href={href || ""} className={cn(styles.menu_item, className)}>
+      <Link href={href || ""} onClick={onClick} className={cn(styles.menu_item, className)}>
         <MenuItemIcon />
         {children}
       </Link>

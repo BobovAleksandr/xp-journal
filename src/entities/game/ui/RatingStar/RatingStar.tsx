@@ -2,8 +2,8 @@
 
 import styles from "./RatingStar.module.scss";
 import cn from "classnames";
-import StarIconEmpty from "./assets/icons/star.svg";
-import StarIconFilled from "./assets/icons/star-fill.svg";
+import StarIconEmpty from "@/shared/assets/star.svg";
+import StarIconFilled from "@/shared/assets/star-fill.svg";
 
 type RatingStarProps = {
   type: "empty" | "filled";

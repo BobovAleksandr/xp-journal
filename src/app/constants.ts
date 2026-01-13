@@ -10,7 +10,7 @@ export const GUEST_ONLY_ROUTES = {
 } as const;
 
 export const AUTH_ONLY_ROUTES = {
-
+  MY_GAMES: '/games/'
 } as const;
 
 export const ENDPOINTS = {
